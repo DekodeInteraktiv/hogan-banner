@@ -14,6 +14,21 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 }
 ?>
 
-<?php if ( ! empty( $this->heading ) ) : ?>
-	<h2 class="heading"><?php echo $this->heading; ?></h2>
-<?php endif; ?>
+<div class="column">
+	<?php if ( ! empty( $this->image_content ) ) : ?>
+		<?php echo $this->image_content; ?>
+	<?php endif; ?>
+</div>
+<div class="column">
+	<?php if ( ! empty( $this->tagline ) ) : ?>
+		<?php echo '<div class="tagline">' . $this->tagline . '</div>'; ?>
+	<?php endif; ?>
+
+	<?php if ( ! empty( $this->heading ) ) : ?>
+		<h2 class="heading"><?php echo $this->heading; ?></h2>
+	<?php endif; ?>
+
+	<?php echo wp_kses( $this->content, $this->content_allowed_html ); ?>
+
+	<?php echo $this->cta_link; ?>
+</div>
