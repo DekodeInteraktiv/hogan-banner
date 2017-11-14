@@ -1,0 +1,22 @@
+{
+  "name": "dekodeinteraktiv/hogan-banner",
+  "description": "Banner Module for Hogan",
+  "homepage": "https://github.com/dekodeinteraktiv/hogan-banner",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0",
+  "require": {
+    "php": ">=5.5",
+    "composer/installers": "~1.2",
+    "dekodeinteraktiv/hogan-core": "@dev"
+  },
+  "archive": {
+    "exclude": [
+      ".editorconfig",
+      ".gitignore",
+      "composer.json",
+      "composer.lock",
+      "LICENSE",
+      "phpcs.xml"
+    ]
+  }
+}
