@@ -28,7 +28,9 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		<h2 class="heading"><?php echo $this->heading; ?></h2>
 	<?php endif; ?>
 
-	<?php echo wp_kses( $this->content, $this->content_allowed_html ); ?>
+	<?php if ( ! empty( $this->content ) ) : ?>
+		<?php echo '<p> ' . $this->content . '</p>'; ?>
+	<?php endif; ?>
 
 	<?php echo $this->cta_link; ?>
 </div>

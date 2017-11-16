@@ -12,10 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Legge settings i egen tab
- * Filtere
- * CSS i plugin (flow direction + bg color light and dark)
+ *
+ * DSS
+ * Style text + bilde
+ *
+ * Style hero
+ *
+ * Plugin:
+ * Ta i bruk dark eller light
+ * Ta i bruk square eller large
+ * Force square image if square is chosen
+ * Editor style 2 columns
+ * CSS i plugin (flow direction + bg color light and dark) med filter for å skru av
  * Kanskje to forskjellige templates som den velger imellom template.php og template-wide.php?
+ * Button group icons for square || large?
+ * Button group icons for dark || light?
  */
 
 if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
@@ -42,13 +53,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 		public $heading;
 
 		/**
-		 * Position for text on > mobile
-		 *
-		 * @var string $text_position
-		 */
-		public $text_position;
-
-		/**
 		 * Banner main text content
 		 *
 		 * @var string $content
@@ -69,6 +73,31 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 		 */
 		public $cta_link;
 
+		/**************/
+		/***SETTINGS***/
+		/**************/
+
+		/**
+		 * Image size for one column or span both columns
+		 *
+		 * @var string $image_size
+		 */
+		public $image_size;
+
+		/**
+		 * Position for text on > mobile
+		 *
+		 * @var string $text_position
+		 */
+		public $text_position;
+
+		/**
+		 * Background color
+		 *
+		 * @var string background_color
+		 */
+		public $background_color;
+
 
 		/**
 		 * Module constructor.
@@ -86,20 +115,21 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 		 */
 		public function get_fields() {
 
-			$image_format_choices = apply_filters( 'hogan/module/banner/field/image_format_choices', [
+			$image_size_choices = apply_filters( 'hogan/module/banner/field/image_format_choices', [
 				'square' => _x( 'Square', 'Image Format', 'hogan-banner' ),
 				'large'  => _x( 'Large', 'Image Format', 'hogan-banner' ),
 			] );
 
 			$text_position_choices = apply_filters( 'hogan/module/banner/field/text_position_choices', [
-				'left'   => _x( 'Left', 'Text Position', 'hogan-banner' ),
-				'center' => _x( 'Center', 'Text Position', 'hogan-banner' ),
-				'right'  => _x( 'Right', 'Text Position', 'hogan-banner' ),
+				'left'   => '<i class="dashicons dashicons-editor-alignleft"></i>',
+				'center' => '<i class="dashicons dashicons-editor-aligncenter"></i>',
+				'right'  => '<i class="dashicons dashicons-editor-alignright"></i>',
 			] );
 
 			$background_color_choices = apply_filters( 'hogan/module/banner/field/background_color_choices', [
 				'light' => _x( 'Light', 'Background Color', 'hogan-banner' ),
-				'dark'  => _x( 'dark', 'Background Color', 'hogan-banner' ),
+				'dark'  => _x( 'Dark', 'Background Color', 'hogan-banner' ),
+				'none'  => _x( 'None', 'Background Color', 'hogan-banner' ),
 			] );
 
 			$constraints_defaults = [
@@ -181,19 +211,19 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 					'endpoint'     => 0,
 				],
 				[
-					'type'          => 'radio',
-					'key'           => $this->field_key . '_image_format',
-					'name'          => 'image_format',
-					'label'         => __( 'Image Format', 'hogan-banner' ),
-					'value'         => is_array( $image_format_choices ) && ! empty( $image_format_choices ) ? reset( $image_format_choices ) : null,
-					// Use the first key in the choices array (default = right)
-					'instructions'  => __( 'Choose image format', 'hogan-banner' ),
-					'choices'       => $image_format_choices,
+					'type'          => 'button_group',
+					'key'           => $this->field_key . '_image_size',
+					'name'          => 'image_size',
+					'label'         => __( 'Image Size', 'hogan-banner' ),
+					'value'         => is_array( $image_size_choices ) && ! empty( $image_size_choices ) ? reset( $image_size_choices ) : null,
+					// Use the first key in the choices array (default = square)
+					'instructions'  => __( 'Choose image size', 'hogan-banner' ),
+					'choices'       => $image_size_choices,
 					'layout'        => 'horizontal',
 					'return_format' => 'value',
 				],
 				[
-					'type'          => 'radio',
+					'type'          => 'button_group',
 					'key'           => $this->field_key . '_text_position',
 					'name'          => 'text_position',
 					'label'         => __( 'Text Position', 'hogan-banner' ),
@@ -205,28 +235,47 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 					'return_format' => 'value',
 				],
 				[
-					'type'              => 'radio',
+					'type'              => 'button_group',
 					'key'               => $this->field_key . '_background_color',
 					'name'              => 'background_color',
 					'label'             => __( 'Background Color', 'hogan-banner' ),
 					'value'             => is_array( $background_color_choices ) && ! empty( $background_color_choices ) ? reset( $background_color_choices ) : null,
-					// Use the first key in the choices array (default = left)
+					// Use the first key in the choices array (default = light)
 					'instructions'      => __( 'Choose background color for the text field', 'hogan-banner' ),
 					'choices'           => $background_color_choices,
 					'layout'            => 'horizontal',
 					'return_format'     => 'value',
-					'conditional_logic' => [ //FIXME: Will not work if choice for image format is changed with filter
+					'conditional_logic' => [ //FIXME: Will not work if choice for image size is changed with filter
 						[
 							[
-								'field'    => $this->field_key . '_image_format',
+								'field'    => $this->field_key . '_image_size',
 								'operator' => '==',
 								'value'    => 'square',
 							],
 						],
 					],
+				],
+				[
+					'type'              => 'range',
+					'key'               => 'field_5a0c5694e3144',
+					'label'             => __( 'Overlay Opacity', 'hogan-banner' ),
+					'name'              => 'overlay_opacity',
+					'instructions'      => __( 'Choose opacity value for overlay behind text', 'hogan-banner' ),
+					'conditional_logic' => [ //FIXME: Will not work if choice for image size is changed with filter
+						[
+							[
+								'field'    => $this->field_key . '_image_size',
+								'operator' => '==',
+								'value'    => 'large',
+							],
+						],
+					],
+					'default_value'     => 50,
+					'min'               => 0,
+					'max'               => 100,
+					'step'              => 1,
 				]
 			);
-
 
 			return $fields;
 		}
@@ -237,17 +286,30 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 		 * @param array $content The content value.
 		 */
 		public function load_args_from_layout_content( $content ) {
-			$this->tagline       = $content['tagline'] ?? null;
-			$this->heading       = isset( $content['heading'] ) ? esc_html( $content['heading'] ) : null;
-			$this->content       = esc_html( $content['content'] );
-			$this->text_position = $content['text_position']; //note: no need?
-			$default_image_args  = [
+			$this->tagline          = $content['tagline'] ?? null;
+			$this->heading          = isset( $content['heading'] ) ? esc_html( $content['heading'] ) : null;
+			$this->content          = esc_html( $content['content'] );
+			$this->image_size       = $content['image_size'];
+			$this->text_position    = $content['text_position'];
+			$this->background_color = $content['background_color'];
+
+			$default_image_square_args = [
 				'size' => 'large',
 				'icon' => false,
 				'attr' => [],
 			];
 
-			$image_args = wp_parse_args( apply_filters( 'hogan/module/banner/image/constraints', [] ), $default_image_args );
+			$default_image_large_args = [
+				'size' => 'large',
+				'icon' => false,
+				'attr' => [],
+			];
+
+			if ( 'square' === $this->image_size ) {
+				$image_args = wp_parse_args( apply_filters( 'hogan/module/banner/image_square/args', [] ), $default_image_square_args );
+			} else {
+				$image_args = wp_parse_args( apply_filters( 'hogan/module/banner/image_large/args', [] ), $default_image_large_args );
+			}
 
 			$this->image_content = wp_get_attachment_image( $content['image_id'], $image_args['size'], $image_args['icon'], $image_args['attr'] );
 
@@ -255,7 +317,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 				$cta                 = $content['cta'];
 				$cta_classes_array   = apply_filters( 'hogan/module/banner/cta_css_classes', [ 'button' ], $this );
 				$cta_classes_escaped = array_map( 'esc_attr', $cta_classes_array );
-				$this->cta_link      = sprintf( '<p><a href="%1$s"%2$s%3$s>%4$s</a></p>',
+				$this->cta_link      = sprintf( '<div><a href="%1$s"%2$s%3$s>%4$s</a></div>',
 					$cta['url'] ?: '#',
 					'' === $cta['target'] ? '' : ' target="' . $cta['target'] . '"',
 					! empty( $cta_classes_escaped ) ? 'class="' . trim( implode( ' ', array_filter( $cta_classes_escaped ) ) ) . '"' : '',
@@ -265,16 +327,15 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 				$this->cta_link = '';
 			endif;
 
-			$this->content_allowed_html = apply_filters( 'hogan/module/banner/content/allowed_html', [
-				'a' => [
-					'href' => true,
-				],
-			] );
-
 			parent::load_args_from_layout_content( $content );
 
 			add_filter( 'hogan/module/banner/inner_wrapper_classes', function () {
-				return [ 'columns', 'text-' . $this->text_position ];
+				return [
+					'columns',
+					'text-' . $this->text_position,
+					'image-size-' . $this->image_size,
+					'bg-color-' . $this->background_color,
+				];
 			} );
 		}
 
