@@ -3,7 +3,7 @@
  * Plugin Name: Hogan Module: Banner
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-banner
  * Description: Banner Module for Hogan.
- * Version: 1.0.0-dev
+ * Version: 1.0.0
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0
