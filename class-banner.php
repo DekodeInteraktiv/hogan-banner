@@ -5,13 +5,14 @@
  * @package Hogan
  */
 
+declare( strict_types = 1 );
 namespace Dekode\Hogan;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
+if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hogan\\Module' ) ) {
 
 	/**
 	 * Banner module class.
@@ -26,13 +27,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 		 * @var string $tagline
 		 */
 		public $tagline;
-
-		/**
-		 * Banner heading - optional
-		 *
-		 * @var string $heading
-		 */
-		public $heading;
 
 		/**
 		 * Banner main text content
@@ -108,8 +102,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 
 		/**
 		 * Field definitions for module.
+		 *
+		 * @return array $fields Fields for this module
 		 */
-		public function get_fields() {
+		public function get_fields() : array {
 
 			$image_size_choices = apply_filters( 'hogan/module/banner/settings/image_format_choices', [
 				'square' => _x( 'Square', 'Image Format', 'hogan-banner' ),
@@ -312,35 +308,37 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 		}
 
 		/**
-		 * Map fields to object variable.
+		 * Map raw fields from acf to object variable.
 		 *
-		 * @param array $content The content value.
+		 * @param array $raw_content Content values.
+		 * @param int   $counter Module location in page layout.
+		 * @return void
 		 */
-		public function load_args_from_layout_content( $content ) {
-			$this->tagline = $content['tagline'] ?? null;
-			$this->heading = isset( $content['heading'] ) ? esc_html( $content['heading'] ) : null;
+		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
-			$this->content       = wp_kses( $content['content'],
+			$this->tagline = $raw_content['tagline'] ?? null;
+
+			$this->content       = wp_kses( $raw_content['content'],
 				[
 					'p'  => [],
 					'br' => [],
 				]
 			); //esc_html(
-			$this->image_size    = $content['image_size'];
+			$this->image_size    = $raw_content['image_size'];
 
 			if ( 'square' === $this->image_size ) {
-				$this->text_position = $content['text_position_square'];
-				$this->background_color = $content['background_color'];
+				$this->text_position = $raw_content['text_position_square'];
+				$this->background_color = $raw_content['background_color'];
 			} else {
-				$this->text_position = $content['text_position_large'];
+				$this->text_position = $raw_content['text_position_large'];
 				$this->background_color = 'none';
-				$this->overlay_opacity  = $content['overlay_opacity'];
+				$this->overlay_opacity  = $raw_content['overlay_opacity'];
 				$default_image_src_args = [
 					'size' => 'large',
 					'icon' => false,
 				];
 				$image_src_args         = wp_parse_args( apply_filters( 'hogan/module/banner/image_large/args', [] ), $default_image_src_args );
-				$image_data             = wp_get_attachment_image_src( $content['image_id'], $image_src_args['size'], $image_src_args['icon'] );
+				$image_data             = wp_get_attachment_image_src( $raw_content['image_id'], $image_src_args['size'], $image_src_args['icon'] );
 				if ( false !== $image_data ) {
 					$this->image_src = $image_data[0];
 				}
@@ -352,11 +350,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 				'attr' => [],
 			];
 			$image_args          = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), $default_image_args );
-			$this->image_content = wp_get_attachment_image( $content['image_id'], $image_args['size'], $image_args['icon'], $image_args['attr'] );
+			$this->image_content = wp_get_attachment_image( $raw_content['image_id'], $image_args['size'], $image_args['icon'], $image_args['attr'] );
 
 
-			if ( ! empty( $content['cta'] ) ) :
-				$cta                 = $content['cta'];
+			if ( ! empty( $raw_content['cta'] ) ) :
+				$cta                 = $raw_content['cta'];
 				$cta_classes_array   = apply_filters( 'hogan/module/banner/cta_css_classes', [ 'button' ], $this );
 				$cta_classes_escaped = array_map( 'esc_attr', $cta_classes_array );
 				$this->cta_link      = sprintf( '<div><a href="%1$s"%2$s%3$s>%4$s</a></div>',
@@ -369,7 +367,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 				$this->cta_link = '';
 			endif;
 
-			parent::load_args_from_layout_content( $content );
+			parent::load_args_from_layout_content( $raw_content, $counter );
 
 			add_filter( 'hogan/module/banner/inner_wrapper_classes', function () {
 				return [
@@ -383,8 +381,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) ) {
 
 		/**
 		 * Validate module content before template is loaded.
+		 *
+		 * @return bool Whether validation of the module is successful / filled with content.
 		 */
-		public function validate_args() {
+		public function validate_args() : bool {
 			return ! empty( $this->content ) && ! empty( $this->image_content );
 		}
 	}

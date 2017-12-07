@@ -4,9 +4,14 @@
  *
  * $this is an instance of the Banner object.
  *
+ * Available properties:
+ * $this->heading (string) Module heading.
+ * TODO:
+ *
  * @package Hogan
  */
 
+declare( strict_types = 1 );
 namespace Dekode\Hogan;
 
 if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
