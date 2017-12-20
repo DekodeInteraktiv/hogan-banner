@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Banner\n"
-"POT-Creation-Date: 2017-11-28 10:51+0100\n"
-"PO-Revision-Date: 2017-11-28 10:51+0100\n"
+"POT-Creation-Date: 2017-12-20 14:36+0100\n"
+"PO-Revision-Date: 2017-12-20 14:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -21,88 +21,88 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: class-banner.php:103
+#: class-banner.php:98
 msgid "Banner"
 msgstr "Banner"
 
-#: class-banner.php:115
+#: class-banner.php:112
 msgctxt "Image Format"
 msgid "Square"
 msgstr "Firkanta"
 
-#: class-banner.php:116
+#: class-banner.php:113
 msgctxt "Image Format"
 msgid "Large"
 msgstr "Stor"
 
-#: class-banner.php:131
+#: class-banner.php:128
 msgctxt "Background Color"
 msgid "Light"
 msgstr "Lys"
 
-#: class-banner.php:132
+#: class-banner.php:129
 msgctxt "Background Color"
 msgid "Dark"
 msgstr "Mørk"
 
-#: class-banner.php:133
+#: class-banner.php:130
 msgctxt "Background Color"
 msgid "None"
 msgstr "Ingen"
 
-#: class-banner.php:152
+#: class-banner.php:149
 msgid "Content"
 msgstr "Innhold"
 
-#: class-banner.php:162
+#: class-banner.php:159
 msgid "Tagline"
 msgstr "Stikktittel"
 
-#: class-banner.php:175
+#: class-banner.php:172
 msgid "Add Image"
 msgstr "Legg til bilde"
 
-#: class-banner.php:193
+#: class-banner.php:190
 msgid "Add content"
 msgstr "Legg til innhold"
 
-#: class-banner.php:201
+#: class-banner.php:198
 msgid "Call to action"
 msgstr "Lenke"
 
-#: class-banner.php:208
+#: class-banner.php:205
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: class-banner.php:218
+#: class-banner.php:215
 msgid "Image Size"
 msgstr "Bildestørrelse"
 
-#: class-banner.php:221
+#: class-banner.php:218
 msgid "Choose image size"
 msgstr "Velg bildestørrelse"
 
-#: class-banner.php:230 class-banner.php:251
+#: class-banner.php:227 class-banner.php:248
 msgid "Text Position"
 msgstr "Tekstplassering"
 
-#: class-banner.php:233 class-banner.php:254
+#: class-banner.php:230 class-banner.php:251
 msgid "Choose text position"
 msgstr "Velg tekstplassering"
 
-#: class-banner.php:272
+#: class-banner.php:269
 msgid "Background Color"
 msgstr "Bakgrunnsfarge"
 
-#: class-banner.php:275
+#: class-banner.php:272
 msgid "Choose background color for the text field"
 msgstr "Bakgrunnsfarge på tekstfeltet"
 
-#: class-banner.php:292
+#: class-banner.php:289
 msgid "Overlay Opacity"
 msgstr "Overlegg dekkevne"
 
-#: class-banner.php:294
+#: class-banner.php:291
 msgid "Choose opacity value for overlay behind text"
 msgstr "Velg tetthetsverdi for overlegg bak teksten"
 

@@ -5,7 +5,8 @@
  * @package Hogan
  */
 
-declare( strict_types = 1 );
+declare( strict_types=1 );
+
 namespace Dekode\Hogan;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -105,7 +106,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 *
 		 * @return array $fields Fields for this module
 		 */
-		public function get_fields() : array {
+		public function get_fields(): array {
 
 			$image_size_choices = apply_filters( 'hogan/module/banner/settings/image_format_choices', [
 				'square' => _x( 'Square', 'Image Format', 'hogan-banner' ),
@@ -113,8 +114,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			] );
 
 			$text_position_choices_square = apply_filters( 'hogan/module/banner/settings/text_position_choices', [
-				'left'   => '<i class="dashicons dashicons-editor-alignleft"></i>',
-				'right'  => '<i class="dashicons dashicons-editor-alignright"></i>',
+				'left'  => '<i class="dashicons dashicons-editor-alignleft"></i>',
+				'right' => '<i class="dashicons dashicons-editor-alignright"></i>',
 			] );
 
 			$text_position_choices_large = apply_filters( 'hogan/module/banner/settings/text_position_choices', [
@@ -169,8 +170,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'           => $this->field_key . '_image_id',
 					'name'          => 'image_id',
 					'label'         => __( 'Add Image', 'hogan-banner' ),
-					//'instructions'  => '',
-					'required'      => 1,
+					'instructions'  => apply_filters( 'hogan/module/banner/image/instructions', '', 'hogan-banner' ),
+					'required'      => apply_filters( 'hogan/module/banner/image/required', 1 ),
 					'return_format' => 'id',
 					'preview_size'  => apply_filters( 'hogan/module/banner/image/preview_size', 'medium' ),
 					'library'       => apply_filters( 'hogan/module/banner/image/library', 'all' ),
@@ -187,7 +188,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'       => $this->field_key . '_content',
 					'name'      => 'content',
 					'label'     => __( 'Add content', 'hogan-text' ),
-					'required'  => 1,
+					'required'  => apply_filters( 'hogan/module/banner/content/required', 0 ),
 					'rows'      => apply_filters( 'hogan/module/banner/content/rows', 4 ),
 					'new_lines' => apply_filters( 'hogan/module/banner/content/new_lines', 'wpautop' ),
 				],
@@ -220,16 +221,16 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'return_format' => 'value',
 				],
 				[
-					'type'          => 'button_group',
-					'key'           => $this->field_key . '_text_position_square',
-					'name'          => 'text_position_square',
-					'label'         => __( 'Text Position', 'hogan-banner' ),
-					'value'         => is_array( $text_position_choices_square ) && ! empty( $text_position_choices_square ) ? reset( $text_position_choices_square ) : null,
+					'type'              => 'button_group',
+					'key'               => $this->field_key . '_text_position_square',
+					'name'              => 'text_position_square',
+					'label'             => __( 'Text Position', 'hogan-banner' ),
+					'value'             => is_array( $text_position_choices_square ) && ! empty( $text_position_choices_square ) ? reset( $text_position_choices_square ) : null,
 					// Use the first key in the choices array (default = left)
-					'instructions'  => __( 'Choose text position', 'hogan-banner' ),
-					'choices'       => $text_position_choices_square,
-					'layout'        => 'horizontal',
-					'return_format' => 'value',
+					'instructions'      => __( 'Choose text position', 'hogan-banner' ),
+					'choices'           => $text_position_choices_square,
+					'layout'            => 'horizontal',
+					'return_format'     => 'value',
 					'conditional_logic' => [ //FIXME: Will not work if choice for text position is changed with filter
 						[
 							[
@@ -241,16 +242,16 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					],
 				],
 				[
-					'type'          => 'button_group',
-					'key'           => $this->field_key . '_text_position_large',
-					'name'          => 'text_position_large',
-					'label'         => __( 'Text Position', 'hogan-banner' ),
-					'value'         => is_array( $text_position_choices_large ) && ! empty( $text_position_choices_large ) ? reset( $text_position_choices_large ) : null,
+					'type'              => 'button_group',
+					'key'               => $this->field_key . '_text_position_large',
+					'name'              => 'text_position_large',
+					'label'             => __( 'Text Position', 'hogan-banner' ),
+					'value'             => is_array( $text_position_choices_large ) && ! empty( $text_position_choices_large ) ? reset( $text_position_choices_large ) : null,
 					// Use the first key in the choices array (default = left)
-					'instructions'  => __( 'Choose text position', 'hogan-banner' ),
-					'choices'       => $text_position_choices_large,
-					'layout'        => 'horizontal',
-					'return_format' => 'value',
+					'instructions'      => __( 'Choose text position', 'hogan-banner' ),
+					'choices'           => $text_position_choices_large,
+					'layout'            => 'horizontal',
+					'return_format'     => 'value',
 					'conditional_logic' => [ //FIXME: Will not work if choice for text position is changed with filter
 						[
 							[
@@ -311,26 +312,27 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int   $counter Module location in page layout.
+		 * @param int $counter Module location in page layout.
+		 *
 		 * @return void
 		 */
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
 			$this->tagline = $raw_content['tagline'] ?? null;
 
-			$this->content       = wp_kses( $raw_content['content'],
+			$this->content    = wp_kses( $raw_content['content'],
 				[
 					'p'  => [],
 					'br' => [],
 				]
 			); //esc_html(
-			$this->image_size    = $raw_content['image_size'];
+			$this->image_size = $raw_content['image_size'];
 
 			if ( 'square' === $this->image_size ) {
-				$this->text_position = $raw_content['text_position_square'];
+				$this->text_position    = $raw_content['text_position_square'];
 				$this->background_color = $raw_content['background_color'];
 			} else {
-				$this->text_position = $raw_content['text_position_large'];
+				$this->text_position    = $raw_content['text_position_large'];
 				$this->background_color = 'none';
 				$this->overlay_opacity  = $raw_content['overlay_opacity'];
 				$default_image_src_args = [
@@ -384,8 +386,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 *
 		 * @return bool Whether validation of the module is successful / filled with content.
 		 */
-		public function validate_args() : bool {
-			return ! empty( $this->content ) && ! empty( $this->image_content );
+		public function validate_args(): bool {
+			return ! empty( $this->image_content ) || empty( apply_filters( 'hogan/module/banner/image/required', 1 ) );
 		}
 	}
 } // End if().
