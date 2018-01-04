@@ -8,3 +8,4 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-banne
 
 ## Available filters
 - `hogan/module/banner/cta_css_classes` Call to action button classnames.
+- `hogan/module/banner/image/args` Image arguments passed to `wp_get_attachment_image`

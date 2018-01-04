@@ -6,9 +6,10 @@
  *
  * Available properties:
  * $this->call_to_action (array|null)  Call to action link.
- * $this->content        (string|null) Main text content
+ * $this->content        (string|null) Main text content.
  * $this->heading        (string|null) Module heading.
- * $this->tagline        (string|null) Tagline
+ * $this->image          (array|null)  Image.
+ * $this->tagline        (string|null) Tagline.
  *
  * @package Hogan
  */
@@ -25,7 +26,16 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 <?php endif; ?>
 
 	<div class="column">
-		<?php echo $this->image_content; ?>
+		<?php
+		if ( ! empty( $this->image ) ) {
+			echo wp_get_attachment_image(
+				$this->image['id'],
+				$this->image['size'],
+				$this->image['icon'],
+				$this->image['attr']
+			);
+		}
+		?>
 	</div>
 	<div class="column">
 		<?php

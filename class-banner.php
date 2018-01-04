@@ -37,11 +37,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $content = null;
 
 		/**
-		 * Rendered image content for use in template.
+		 * Image.
 		 *
-		 * @var $image_content
+		 * @var array|null $image
 		 */
-		public $image_content;
+		public $image = null;
 
 		/**
 		 * Image src for use in template.
@@ -341,13 +341,17 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				}
 			}
 
-			$default_image_args  = [
-				'size' => 'large',
-				'icon' => false,
-				'attr' => [],
-			];
-			$image_args          = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), $default_image_args );
-			$this->image_content = wp_get_attachment_image( $raw_content['image_id'], $image_args['size'], $image_args['icon'], $image_args['attr'] );
+			// Image.
+			if ( ! empty( $raw_content['image_id'] ) ) {
+				$image = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), [
+					'size' => 'large',
+					'icon' => false,
+					'attr' => [],
+				] );
+
+				$image['id'] = $raw_content['image_id'];
+				$this->image = $image;
+			}
 
 			// Call to action button.
 			if ( ! empty( $raw_content['cta'] ) ) {
