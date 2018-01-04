@@ -380,7 +380,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * @return bool Whether validation of the module is successful / filled with content.
 		 */
 		public function validate_args(): bool {
-			return ! empty( $this->image_content ) || empty( apply_filters( 'hogan/module/banner/image/required', 1 ) );
+			return ! empty( $this->image ) || empty( apply_filters( 'hogan/module/banner/image/required', 1 ) );
 		}
 	}
 } // End if().
