@@ -25,16 +25,16 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		/**
 		 * Banner tagline - optional
 		 *
-		 * @var string $tagline
+		 * @var string|null $tagline
 		 */
-		public $tagline;
+		public $tagline = null;
 
 		/**
 		 * Banner main text content
 		 *
-		 * @var string $content
+		 * @var string|null $content
 		 */
-		public $content;
+		public $content = null;
 
 		/**
 		 * Rendered image content for use in template.
@@ -318,14 +318,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 */
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
-			$this->tagline = $raw_content['tagline'] ?? null;
+			$this->tagline = $raw_content['tagline'];
+			$this->content = $raw_content['content'];
 
-			$this->content    = wp_kses( $raw_content['content'],
-				[
-					'p'  => [],
-					'br' => [],
-				]
-			); //esc_html(
 			$this->image_size = $raw_content['image_size'];
 
 			if ( 'square' === $this->image_size ) {

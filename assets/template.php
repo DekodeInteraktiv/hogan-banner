@@ -6,7 +6,9 @@
  *
  * Available properties:
  * $this->call_to_action (array|null)  Call to action link.
- * $this->heading        (string)      Module heading.
+ * $this->content        (string|null) Main text content
+ * $this->heading        (string|null) Module heading.
+ * $this->tagline        (string|null) Tagline
  *
  * @package Hogan
  */
@@ -26,19 +28,28 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		<?php echo $this->image_content; ?>
 	</div>
 	<div class="column">
-		<?php if ( ! empty( $this->tagline ) ) : ?>
-			<?php echo '<div class="tagline">' . $this->tagline . '</div>'; ?>
-		<?php endif; ?>
-
-		<?php if ( ! empty( $this->heading ) ) : ?>
-			<h2 class="heading alpha"><?php echo $this->heading; ?></h2>
-		<?php endif; ?>
-
-		<?php if ( ! empty( $this->content ) ) : ?>
-			<?php echo $this->content; ?>
-		<?php endif; ?>
-
 		<?php
+		if ( ! empty( $this->tagline ) ) {
+			printf( '<div class="tagline">%s</div>',
+				esc_html( $this->tagline )
+			);
+		}
+
+		if ( ! empty( $this->heading ) ) {
+			printf( '<h2 class="hogan-heading">%s</h2>',
+				wp_kses( $this->heading, [
+					'br' => [],
+				] )
+			);
+		}
+
+		if ( ! empty( $this->content ) ) {
+			echo wp_kses( $this->content, [
+				'p'  => [],
+				'br' => [],
+			] );
+		}
+
 		if ( ! empty( $this->call_to_action ) ) {
 			echo '<div>';
 			hogan_component( 'button', $this->call_to_action );
