@@ -7,4 +7,4 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-banne
 …
 
 ## Available filters
-- TODO
+- `hogan/module/banner/cta_css_classes` Call to action button classnames.
