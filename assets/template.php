@@ -36,11 +36,9 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		}
 
 		if ( ! empty( $this->heading ) ) {
-			printf( '<h2 class="hogan-heading">%s</h2>',
-				wp_kses( $this->heading, [
-					'br' => [],
-				] )
-			);
+			hogan_component( 'heading', [
+				'title' => $this->heading,
+			] );
 		}
 
 		if ( ! empty( $this->content ) ) {
