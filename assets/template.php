@@ -5,8 +5,8 @@
  * $this is an instance of the Banner object.
  *
  * Available properties:
- * $this->heading (string) Module heading.
- * TODO:
+ * $this->call_to_action (array|null)  Call to action link.
+ * $this->heading        (string)      Module heading.
  *
  * @package Hogan
  */
@@ -38,7 +38,11 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 			<?php echo $this->content; ?>
 		<?php endif; ?>
 
-		<?php echo $this->cta_link; ?>
+		<?php
+		if ( ! empty( $this->call_to_action ) ) {
+			hogan_component( 'button', $this->call_to_action );
+		}
+		?>
 	</div>
 
 <?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>

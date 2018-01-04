@@ -51,11 +51,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $image_src;
 
 		/**
-		 * Rendered call to action link.
+		 * Call to action link.
 		 *
-		 * @var $cta_link
+		 * @var array|null $call_to_action
 		 */
-		public $cta_link;
+		public $call_to_action = null;
 
 		/**************/
 		/***SETTINGS***/
@@ -354,20 +354,14 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			$image_args          = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), $default_image_args );
 			$this->image_content = wp_get_attachment_image( $raw_content['image_id'], $image_args['size'], $image_args['icon'], $image_args['attr'] );
 
+			// Call to action button.
+			if ( ! empty( $raw_content['cta'] ) ) {
+				$cta              = $raw_content['cta'];
+				$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-banner' );
+				$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
 
-			if ( ! empty( $raw_content['cta'] ) ) :
-				$cta                 = $raw_content['cta'];
-				$cta_classes_array   = apply_filters( 'hogan/module/banner/cta_css_classes', [ 'button' ], $this );
-				$cta_classes_escaped = array_map( 'esc_attr', $cta_classes_array );
-				$this->cta_link      = sprintf( '<div><a href="%1$s"%2$s%3$s>%4$s</a></div>',
-					$cta['url'] ?: '#',
-					'' === $cta['target'] ? '' : ' target="' . $cta['target'] . '"',
-					! empty( $cta_classes_escaped ) ? 'class="' . trim( implode( ' ', array_filter( $cta_classes_escaped ) ) ) . '"' : '',
-					$cta['title'] ?: esc_html__( 'Read more', 'hogan-banner' )
-				);
-			else :
-				$this->cta_link = '';
-			endif;
+				$this->call_to_action = $cta;
+			}
 
 			parent::load_args_from_layout_content( $raw_content, $counter );
 
