@@ -25,23 +25,23 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		/**
 		 * Banner tagline - optional
 		 *
-		 * @var string $tagline
+		 * @var string|null $tagline
 		 */
-		public $tagline;
+		public $tagline = null;
 
 		/**
 		 * Banner main text content
 		 *
-		 * @var string $content
+		 * @var string|null $content
 		 */
-		public $content;
+		public $content = null;
 
 		/**
-		 * Rendered image content for use in template.
+		 * Image.
 		 *
-		 * @var $image_content
+		 * @var array|null $image
 		 */
-		public $image_content;
+		public $image = null;
 
 		/**
 		 * Image src for use in template.
@@ -318,14 +318,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 */
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
-			$this->tagline = $raw_content['tagline'] ?? null;
+			$this->tagline = $raw_content['tagline'];
+			$this->content = $raw_content['content'];
 
-			$this->content    = wp_kses( $raw_content['content'],
-				[
-					'p'  => [],
-					'br' => [],
-				]
-			); //esc_html(
 			$this->image_size = $raw_content['image_size'];
 
 			if ( 'square' === $this->image_size ) {
@@ -346,13 +341,17 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				}
 			}
 
-			$default_image_args  = [
-				'size' => 'large',
-				'icon' => false,
-				'attr' => [],
-			];
-			$image_args          = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), $default_image_args );
-			$this->image_content = wp_get_attachment_image( $raw_content['image_id'], $image_args['size'], $image_args['icon'], $image_args['attr'] );
+			// Image.
+			if ( ! empty( $raw_content['image_id'] ) ) {
+				$image = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), [
+					'size' => 'large',
+					'icon' => false,
+					'attr' => [],
+				] );
+
+				$image['id'] = $raw_content['image_id'];
+				$this->image = $image;
+			}
 
 			// Call to action button.
 			if ( ! empty( $raw_content['cta'] ) ) {
@@ -381,7 +380,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * @return bool Whether validation of the module is successful / filled with content.
 		 */
 		public function validate_args(): bool {
-			return ! empty( $this->image_content ) || empty( apply_filters( 'hogan/module/banner/image/required', 1 ) );
+			return ! empty( $this->image ) || empty( apply_filters( 'hogan/module/banner/image/required', 1 ) );
 		}
 	}
 } // End if().

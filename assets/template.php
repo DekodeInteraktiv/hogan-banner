@@ -6,7 +6,10 @@
  *
  * Available properties:
  * $this->call_to_action (array|null)  Call to action link.
- * $this->heading        (string)      Module heading.
+ * $this->content        (string|null) Main text content.
+ * $this->heading        (string|null) Module heading.
+ * $this->image          (array|null)  Image.
+ * $this->tagline        (string|null) Tagline.
  *
  * @package Hogan
  */
@@ -19,26 +22,42 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 }
 ?>
 <?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>
-	<div class="opacity-<?php echo $this->overlay_opacity; ?>" style="background-image: url('<?php echo $this->image_src; ?>');">
+	<div class="opacity-<?php echo esc_attr( $this->overlay_opacity ); ?>" style="background-image: url('<?php echo esc_url( $this->image_src ); ?>');">
 <?php endif; ?>
 
 	<div class="column">
-		<?php echo $this->image_content; ?>
+		<?php
+		if ( ! empty( $this->image ) ) {
+			echo wp_get_attachment_image(
+				$this->image['id'],
+				$this->image['size'],
+				$this->image['icon'],
+				$this->image['attr']
+			);
+		}
+		?>
 	</div>
 	<div class="column">
-		<?php if ( ! empty( $this->tagline ) ) : ?>
-			<?php echo '<div class="tagline">' . $this->tagline . '</div>'; ?>
-		<?php endif; ?>
-
-		<?php if ( ! empty( $this->heading ) ) : ?>
-			<h2 class="heading alpha"><?php echo $this->heading; ?></h2>
-		<?php endif; ?>
-
-		<?php if ( ! empty( $this->content ) ) : ?>
-			<?php echo $this->content; ?>
-		<?php endif; ?>
-
 		<?php
+		if ( ! empty( $this->tagline ) ) {
+			printf( '<div class="tagline">%s</div>',
+				esc_html( $this->tagline )
+			);
+		}
+
+		if ( ! empty( $this->heading ) ) {
+			hogan_component( 'heading', [
+				'title' => $this->heading,
+			] );
+		}
+
+		if ( ! empty( $this->content ) ) {
+			echo wp_kses( $this->content, [
+				'p'  => [],
+				'br' => [],
+			] );
+		}
+
 		if ( ! empty( $this->call_to_action ) ) {
 			echo '<div>';
 			hogan_component( 'button', $this->call_to_action );
@@ -47,6 +66,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		?>
 	</div>
 
-<?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>
-	</div>
-<?php endif;
+<?php
+if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) {
+	echo '</div>';
+}
