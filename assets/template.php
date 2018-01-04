@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 }
 ?>
 <?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>
-	<div class="opacity-<?php echo $this->overlay_opacity; ?>" style="background-image: url('<?php echo $this->image_src; ?>');">
+	<div class="opacity-<?php echo esc_attr( $this->overlay_opacity ); ?>" style="background-image: url('<?php echo esc_url( $this->image_src ); ?>');">
 <?php endif; ?>
 
 	<div class="column">
@@ -56,6 +56,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		?>
 	</div>
 
-<?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>
-	</div>
-<?php endif;
+<?php
+if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) {
+	echo '</div>';
+}
