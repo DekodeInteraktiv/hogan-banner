@@ -5,7 +5,7 @@
  * @package Hogan
  */
 
-declare( strict_types=1 );
+declare( strict_types = 1 );
 
 namespace Dekode\Hogan;
 
@@ -56,10 +56,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * @var array|null $call_to_action
 		 */
 		public $call_to_action = null;
-
-		/**************/
-		/***SETTINGS***/
-		/**************/
 
 		/**
 		 * Image size for one column or span both columns
@@ -140,7 +136,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				'mime_types' => '',
 			];
 
-			// Merge $args from filter with $defaults
+			// Merge $args from filter with $defaults.
 			$constraints_args = wp_parse_args( apply_filters( 'hogan/module/banner/image/constraints', [] ), $constraints_defaults );
 
 			$fields = [
@@ -214,7 +210,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'name'          => 'image_size',
 					'label'         => __( 'Image Size', 'hogan-banner' ),
 					'value'         => is_array( $image_size_choices ) && ! empty( $image_size_choices ) ? reset( $image_size_choices ) : null,
-					// Use the first key in the choices array (default = square)
+					// Use the first key in the choices array (default = square).
 					'instructions'  => __( 'Choose image size', 'hogan-banner' ),
 					'choices'       => $image_size_choices,
 					'layout'        => 'horizontal',
@@ -226,12 +222,12 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'name'              => 'text_position_square',
 					'label'             => __( 'Text Position', 'hogan-banner' ),
 					'value'             => is_array( $text_position_choices_square ) && ! empty( $text_position_choices_square ) ? reset( $text_position_choices_square ) : null,
-					// Use the first key in the choices array (default = left)
+					// Use the first key in the choices array (default = left).
 					'instructions'      => __( 'Choose text position', 'hogan-banner' ),
 					'choices'           => $text_position_choices_square,
 					'layout'            => 'horizontal',
 					'return_format'     => 'value',
-					'conditional_logic' => [ //FIXME: Will not work if choice for text position is changed with filter
+					'conditional_logic' => [ // Will not work if choice for text position is changed with filter.
 						[
 							[
 								'field'    => $this->field_key . '_image_size',
@@ -247,12 +243,12 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'name'              => 'text_position_large',
 					'label'             => __( 'Text Position', 'hogan-banner' ),
 					'value'             => is_array( $text_position_choices_large ) && ! empty( $text_position_choices_large ) ? reset( $text_position_choices_large ) : null,
-					// Use the first key in the choices array (default = left)
+					// Use the first key in the choices array (default = left).
 					'instructions'      => __( 'Choose text position', 'hogan-banner' ),
 					'choices'           => $text_position_choices_large,
 					'layout'            => 'horizontal',
 					'return_format'     => 'value',
-					'conditional_logic' => [ //FIXME: Will not work if choice for text position is changed with filter
+					'conditional_logic' => [ // Will not work if choice for text position is changed with filter.
 						[
 							[
 								'field'    => $this->field_key . '_image_size',
@@ -268,12 +264,12 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'name'              => 'background_color',
 					'label'             => __( 'Background Color', 'hogan-banner' ),
 					'value'             => is_array( $background_color_choices ) && ! empty( $background_color_choices ) ? reset( $background_color_choices ) : null,
-					// Use the first key in the choices array (default = light)
+					// Use the first key in the choices array (default = light).
 					'instructions'      => __( 'Choose background color for the text field', 'hogan-banner' ),
 					'choices'           => $background_color_choices,
 					'layout'            => 'horizontal',
 					'return_format'     => 'value',
-					'conditional_logic' => [ //FIXME: Will not work if choice for image size is changed with filter
+					'conditional_logic' => [ // Will not work if choice for image size is changed with filter.
 						[
 							[
 								'field'    => $this->field_key . '_image_size',
@@ -289,7 +285,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'label'             => __( 'Overlay Opacity', 'hogan-banner' ),
 					'name'              => 'overlay_opacity',
 					'instructions'      => __( 'Choose opacity value for overlay behind text', 'hogan-banner' ),
-					'conditional_logic' => [ //FIXME: Will not work if choice for image size is changed with filter
+					'conditional_logic' => [ // Will not work if choice for image size is changed with filter.
 						[
 							[
 								'field'    => $this->field_key . '_image_size',
@@ -312,7 +308,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int $counter Module location in page layout.
+		 * @param int   $counter Module location in page layout.
 		 *
 		 * @return void
 		 */
