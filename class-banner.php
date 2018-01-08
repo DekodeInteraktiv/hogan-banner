@@ -105,6 +105,14 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		}
 
 		/**
+		 * Enqueue module assets
+		 */
+		public function enqueue_assets() {
+			$_version = defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ? time() : HOGAN_BANNER_VERSION;
+			wp_enqueue_style( 'hogan-banner', plugins_url( '/assets/hogan-banner.css', __FILE__ ), [], $_version );
+		}
+
+		/**
 		 * Field definitions for module.
 		 *
 		 * @return array $fields Fields for this module
