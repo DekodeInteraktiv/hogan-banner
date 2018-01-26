@@ -3,7 +3,7 @@
   "description": "Banner Module for Hogan",
   "homepage": "https://github.com/dekodeinteraktiv/hogan-banner",
   "type": "wordpress-plugin",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "require": {
     "php": ">=5.5",
     "composer/installers": "~1.2",
