@@ -1,17 +1,19 @@
-## master
-#### :boom: Breaking Change
+# Changelog
+
+## [1.1.0] - 2018-01-26
+### Breaking Change
 * [#2](https://github.com/DekodeInteraktiv/hogan-banner/pull/2) Heading classname changed from `.heading .alpha` to `.hogan-heading`
 * [#1](https://github.com/DekodeInteraktiv/hogan-banner/pull/1) Button classname changed from `.button` to `.hogan-button`
 
-### :house: Internal
+### Internal
 * [#3](https://github.com/DekodeInteraktiv/hogan-banner/pull/3) Added Travis-CI config
 * [#2](https://github.com/DekodeInteraktiv/hogan-banner/pull/2) Late escaping
 * [#2](https://github.com/DekodeInteraktiv/hogan-banner/pull/2) Use core heading component on heading
 * [#1](https://github.com/DekodeInteraktiv/hogan-banner/pull/1) Use core button component to print out call to action button
 
-## 1.0.5
-#### :nail_care: Enhancement
+## [1.0.5] - 2017-12-20
+### Enhancement
 * Added filters
 
-### :house: Internal
+### Internal
 * Text content is no longer required
