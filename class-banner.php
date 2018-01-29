@@ -340,7 +340,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int $counter Module location in page layout.
+		 * @param int   $counter Module location in page layout.
 		 *
 		 * @return void
 		 */
