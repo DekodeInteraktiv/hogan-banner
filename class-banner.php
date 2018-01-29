@@ -58,6 +58,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $call_to_action = null;
 
 		/**
+		 * Secondary call to action link.
+		 *
+		 * @var array|null $secondary_call_to_action
+		 */
+		public $secondary_call_to_action = null;
+
+		/**
 		 * Image size for one column or span both columns
 		 *
 		 * @var string $image_size
@@ -104,27 +111,35 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 */
 		public function get_fields(): array {
 
-			$image_size_choices = apply_filters( 'hogan/module/banner/settings/image_format_choices', [
-				'square' => _x( 'Square', 'Image Format', 'hogan-banner' ),
-				'large'  => _x( 'Large', 'Image Format', 'hogan-banner' ),
-			] );
+			$image_size_choices = apply_filters(
+				'hogan/module/banner/settings/image_format_choices', [
+					'square' => _x( 'Square', 'Image Format', 'hogan-banner' ),
+					'large'  => _x( 'Large', 'Image Format', 'hogan-banner' ),
+				]
+			);
 
-			$text_position_choices_square = apply_filters( 'hogan/module/banner/settings/text_position_choices', [
-				'left'  => '<i class="dashicons dashicons-editor-alignleft"></i>',
-				'right' => '<i class="dashicons dashicons-editor-alignright"></i>',
-			] );
+			$text_position_choices_square = apply_filters(
+				'hogan/module/banner/settings/text_position_choices', [
+					'left'  => '<i class="dashicons dashicons-editor-alignleft"></i>',
+					'right' => '<i class="dashicons dashicons-editor-alignright"></i>',
+				]
+			);
 
-			$text_position_choices_large = apply_filters( 'hogan/module/banner/settings/text_position_choices', [
-				'left'   => '<i class="dashicons dashicons-editor-alignleft"></i>',
-				'center' => '<i class="dashicons dashicons-editor-aligncenter"></i>',
-				'right'  => '<i class="dashicons dashicons-editor-alignright"></i>',
-			] );
+			$text_position_choices_large = apply_filters(
+				'hogan/module/banner/settings/text_position_choices', [
+					'left'   => '<i class="dashicons dashicons-editor-alignleft"></i>',
+					'center' => '<i class="dashicons dashicons-editor-aligncenter"></i>',
+					'right'  => '<i class="dashicons dashicons-editor-alignright"></i>',
+				]
+			);
 
-			$background_color_choices = apply_filters( 'hogan/module/banner/settings/background_color_choices', [
-				'light' => _x( 'Light', 'Background Color', 'hogan-banner' ),
-				'dark'  => _x( 'Dark', 'Background Color', 'hogan-banner' ),
-				'none'  => _x( 'None', 'Background Color', 'hogan-banner' ),
-			] );
+			$background_color_choices = apply_filters(
+				'hogan/module/banner/settings/background_color_choices', [
+					'light' => _x( 'Light', 'Background Color', 'hogan-banner' ),
+					'dark'  => _x( 'Dark', 'Background Color', 'hogan-banner' ),
+					'none'  => _x( 'None', 'Background Color', 'hogan-banner' ),
+				]
+			);
 
 			$constraints_defaults = [
 				'min_width'  => '',
@@ -160,7 +175,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			// Heading field can be disabled using filter hogan/module/banner/heading/enabled (true/false).
 			hogan_append_heading_field( $fields, $this );
 
-			array_push( $fields,
+			array_push(
+				$fields,
 				[
 					'type'          => 'image',
 					'key'           => $this->field_key . '_image_id',
@@ -194,7 +210,23 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'label'         => __( 'Call to action', 'hogan-banner' ),
 					'name'          => 'cta',
 					'return_format' => 'array',
-				],
+				]
+			);
+
+			if ( true === apply_filters( 'hogan/module/banner/secondary_cta/enabled', false ) ) {
+				array_push(
+					$fields, [
+						'type'          => 'link',
+						'key'           => $this->field_key . '_secondary_cta',
+						'label'         => __( 'Secondary call to action', 'hogan-banner' ),
+						'name'          => 'secondary_cta',
+						'return_format' => 'array',
+					]
+				);
+			}
+
+			array_push(
+				$fields,
 				[
 					'type'         => 'tab',
 					'key'          => $this->field_key . '_settings_tab',
@@ -339,11 +371,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 
 			// Image.
 			if ( ! empty( $raw_content['image_id'] ) ) {
-				$image = wp_parse_args( apply_filters( 'hogan/module/banner/image/args', [] ), [
-					'size' => 'large',
-					'icon' => false,
-					'attr' => [],
-				] );
+				$image = wp_parse_args(
+					apply_filters( 'hogan/module/banner/image/args', [] ), [
+						'size' => 'large',
+						'icon' => false,
+						'attr' => [],
+					]
+				);
 
 				$image['id'] = $raw_content['image_id'];
 				$this->image = $image;
@@ -358,16 +392,27 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$this->call_to_action = $cta;
 			}
 
+			// Secondary call to action button.
+			if ( true === apply_filters( 'hogan/module/banner/secondary_cta/enabled', false ) && ! empty( $raw_content['secondary_cta'] ) ) {
+				$secondary_cta              = $raw_content['secondary_cta'];
+				$secondary_cta['title']     = $secondary_cta['title'] ?: __( 'Read more', 'hogan-banner' );
+				$secondary_cta['classname'] = apply_filters( 'hogan/module/banner/secondary_cta_css_classes', 'hogan-secondary-button', $this );
+
+				$this->secondary_call_to_action = $secondary_cta;
+			}
+
 			parent::load_args_from_layout_content( $raw_content, $counter );
 
-			add_filter( 'hogan/module/banner/inner_wrapper_classes', function () {
-				return [
-					'columns',
-					'text-' . $this->text_position,
-					'image-size-' . $this->image_size,
-					'bg-color-' . $this->background_color,
-				];
-			} );
+			add_filter(
+				'hogan/module/banner/inner_wrapper_classes', function () {
+					return [
+						'columns',
+						'text-' . $this->text_position,
+						'image-size-' . $this->image_size,
+						'bg-color-' . $this->background_color,
+					];
+				}
+			);
 		}
 
 		/**
