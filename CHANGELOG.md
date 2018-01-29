@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.1.1] - 2018-01-29
+- Added optional secondary call to action button
+    - Use filter `hogan/module/banner/secondary_cta/enabled` to enable. Default `false`.
+
 ## [1.1.0] - 2018-01-26
 ### Breaking Change
 * [#2](https://github.com/DekodeInteraktiv/hogan-banner/pull/2) Heading classname changed from `.heading .alpha` to `.hogan-heading`

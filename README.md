@@ -10,3 +10,5 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-banne
 
 ### Call to action
 - `hogan/module/banner/cta_css_classes` Call to action button classnames.
+- `hogan/module/banner/secondary_cta/enabled`. Enable secondary call to action button. Default `false`.
+- `hogan/module/banner/secondary_cta_css_classes` Secondary call to action button classnames.
