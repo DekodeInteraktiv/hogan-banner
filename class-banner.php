@@ -58,6 +58,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $call_to_action = null;
 
 		/**
+		 * Secondary call to action link.
+		 *
+		 * @var array|null $secondary_call_to_action
+		 */
+		public $secondary_call_to_action = null;
+
+		/**
 		 * Image size for one column or span both columns
 		 *
 		 * @var string $image_size
@@ -194,7 +201,21 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'label'         => __( 'Call to action', 'hogan-banner' ),
 					'name'          => 'cta',
 					'return_format' => 'array',
-				],
+				]
+			);
+
+			if ( true === apply_filters( 'hogan/module/banner/secondary_cta/enabled', false ) ) {
+				array_push( $fields, [
+						'type'          => 'link',
+						'key'           => $this->field_key . '_secondary_cta',
+						'label'         => __( 'Secondary call to action', 'hogan-banner' ),
+						'name'          => 'secondary_cta',
+						'return_format' => 'array',
+					]
+				);
+			}
+
+			array_push( $fields,
 				[
 					'type'         => 'tab',
 					'key'          => $this->field_key . '_settings_tab',
@@ -308,7 +329,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int   $counter Module location in page layout.
+		 * @param int $counter Module location in page layout.
 		 *
 		 * @return void
 		 */
@@ -356,6 +377,15 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
 
 				$this->call_to_action = $cta;
+			}
+
+			// Secondary call to action button.
+			if ( true === apply_filters( 'hogan/module/banner/secondary_cta/enabled', false ) && ! empty( $raw_content['secondary_cta'] ) ) {
+				$secondary_cta              = $raw_content['secondary_cta'];
+				$secondary_cta['title']     = $secondary_cta['title'] ?: __( 'Read more', 'hogan-banner' );
+				$secondary_cta['classname'] = apply_filters( 'hogan/module/banner/secondary_cta_css_classes', 'hogan-secondary-button', $this );
+
+				$this->secondary_call_to_action = $secondary_cta;
 			}
 
 			parent::load_args_from_layout_content( $raw_content, $counter );

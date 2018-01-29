@@ -63,6 +63,13 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 			hogan_component( 'button', $this->call_to_action );
 			echo '</div>';
 		}
+
+		if ( ! empty( $this->secondary_call_to_action ) ) {
+			echo '<div>';
+			hogan_component( 'button', $this->secondary_call_to_action );
+			echo '</div>';
+		}
+
 		?>
 	</div>
 
