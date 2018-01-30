@@ -376,6 +376,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$this->image = $image;
 			}
 
+			// Reset call to action.
+			$this->call_to_actions = [];
+
 			// Call to action button.
 			if ( ! empty( $raw_content['cta'] ) ) {
 				$cta              = $raw_content['cta'];
