@@ -18,13 +18,14 @@
  */
 
 declare( strict_types=1 );
+
 namespace Dekode\Hogan\Banner;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'HOGAN_BANNER_VERSION', '1.0.5' );
+define( 'HOGAN_BANNER_VERSION', '1.1.1' );
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\hogan_load_textdomain' );
 add_action( 'hogan/include_modules', __NAMESPACE__ . '\\hogan_register_module' );
