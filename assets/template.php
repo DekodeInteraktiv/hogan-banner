@@ -5,11 +5,11 @@
  * $this is an instance of the Banner object.
  *
  * Available properties:
- * $this->call_to_action (array|null)  Call to action link.
- * $this->content        (string|null) Main text content.
- * $this->heading        (string|null) Module heading.
- * $this->image          (array|null)  Image.
- * $this->tagline        (string|null) Tagline.
+ * $this->call_to_actions (array)  Call to action links.
+ * $this->content         (string|null) Main text content.
+ * $this->heading         (string|null) Module heading.
+ * $this->image           (array|null)  Image.
+ * $this->tagline         (string|null) Tagline.
  *
  * @package Hogan
  */
@@ -64,19 +64,9 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 			);
 		}
 
-		$call_to_action_buttons = [];
-
-		if ( ! empty( $this->call_to_action ) ) {
-			$call_to_action_buttons[] = $this->call_to_action;
-		}
-
-		if ( ! empty( $this->secondary_call_to_action ) ) {
-			$call_to_action_buttons[] = $this->secondary_call_to_action;
-		}
-
-		if ( ! empty( $call_to_action_buttons ) ) {
+		if ( ! empty( $this->call_to_actions ) ) {
 			echo '<div>';
-			foreach ( $call_to_action_buttons as $button ) {
+			foreach ( $this->call_to_actions as $button ) {
 				echo '<span>';
 				hogan_component( 'button', $button );
 				echo '</span>';

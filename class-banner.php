@@ -51,18 +51,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $image_src;
 
 		/**
-		 * Call to action link.
+		 * Call to action links.
 		 *
-		 * @var array|null $call_to_action
+		 * @var array $call_to_actions
 		 */
-		public $call_to_action = null;
-
-		/**
-		 * Secondary call to action link.
-		 *
-		 * @var array|null $secondary_call_to_action
-		 */
-		public $secondary_call_to_action = null;
+		public $call_to_actions = [];
 
 		/**
 		 * Image size for one column or span both columns
@@ -389,7 +382,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-banner' );
 				$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
 
-				$this->call_to_action = $cta;
+				$this->call_to_actions[] = $cta;
 			}
 
 			// Secondary call to action button.
@@ -398,7 +391,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$secondary_cta['title']     = $secondary_cta['title'] ?: __( 'Read more', 'hogan-banner' );
 				$secondary_cta['classname'] = apply_filters( 'hogan/module/banner/secondary_cta_css_classes', 'hogan-secondary-button', $this );
 
-				$this->secondary_call_to_action = $secondary_cta;
+				$this->call_to_actions[] = $secondary_cta;
 			}
 
 			parent::load_args_from_layout_content( $raw_content, $counter );
