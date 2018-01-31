@@ -101,6 +101,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			$this->label    = __( 'Banner', 'hogan-banner' );
 			$this->template = __DIR__ . '/assets/template.php';
 
+			add_filter( 'hogan/module/inner_wrapper_classes', [ $this, 'inner_wrapper_classes' ], 10, 2 );
+
 			parent::__construct();
 		}
 
@@ -337,6 +339,26 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		}
 
 		/**
+		 * Module wrapper classname.
+		 *
+		 * @param array  $classnames Inner wrapper classnames.
+		 * @param Module $module Module.
+		 * @return array Classnames.
+		 */
+		public function inner_wrapper_classes( array $classnames, Module $module ) : array {
+			if ( $this->name !== $module->name ) {
+				return $classnames;
+			}
+
+			return array_merge( $classnames, [
+				'columns',
+				'text-' . $module->text_position,
+				'image-size-' . $module->image_size,
+				'bg-color-' . $module->background_color,
+			] );
+		}
+
+		/**
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
@@ -402,17 +424,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			}
 
 			parent::load_args_from_layout_content( $raw_content, $counter );
-
-			add_filter(
-				'hogan/module/banner/inner_wrapper_classes', function () {
-					return [
-						'columns',
-						'text-' . $this->text_position,
-						'image-size-' . $this->image_size,
-						'bg-color-' . $this->background_color,
-					];
-				}
-			);
 		}
 
 		/**

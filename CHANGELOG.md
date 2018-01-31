@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+### Internal
+* Fix deprecated inner wrapper classname filter
 
 ## [1.1.1] - 2018-01-29
 - Added optional secondary call to action button
