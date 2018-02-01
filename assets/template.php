@@ -22,8 +22,21 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 	return; // Exit if accessed directly.
 }
 ?>
-	<?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>
-	<div class="opacity-<?php echo esc_attr( $this->overlay_opacity ); ?>" style="background-image: url('<?php echo esc_url( $this->image_src ); ?>');">
+	<?php
+	if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) :
+		$large_image_wrapper_classes = array_merge(
+			[ 'opacity-' . $this->overlay_opacity ],
+			apply_filters( 'hogan/module/banner/large_image_wrapper_classes', [], $this )
+		);
+		$large_image_wrapper_classes = trim( implode( ' ', array_filter( $large_image_wrapper_classes ) ) );
+
+		$large_image_wrapper_styles = array_merge(
+			[ 'background-image: url(' . esc_url( $this->image_src . ')' ) ],
+			apply_filters( 'hogan/module/banner/large_image_wrapper_styles', [], $this )
+		);
+		$large_image_wrapper_styles = trim( implode( '; ', array_filter( $large_image_wrapper_styles ) ) );
+	?>
+	<div class="<?php echo esc_attr( $large_image_wrapper_classes ); ?>" style="<?php echo esc_attr( $large_image_wrapper_styles ); ?>">
 <?php endif; ?>
 
 	<div class="column">
