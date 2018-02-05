@@ -1,6 +1,16 @@
 # Changelog
 
 ## [Unreleased]
+### Breaking changes
+* Tagline is disabled by default. Use filter `hogan/module/banner/tagline/enabled` to enable.
+* Tagline classname has changed from `.tagline` to `.hogan-tagline`.
+* Template `.column` classname has changed to `.hogan-banner-column`.
+* Template has a new `.hogan-banner` wrapper div.
+* Plugin now ships with some default CSS.
+* All wrapper settings classnames has changed.
+* New layout - Full background image.
+* New filters.
+
 ### Internal
 * Fix deprecated inner wrapper classname filter
 

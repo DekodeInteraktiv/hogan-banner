@@ -21,12 +21,10 @@ namespace Dekode\Hogan;
 if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 	return; // Exit if accessed directly.
 }
-?>
-	<?php if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) : ?>
-	<div class="opacity-<?php echo esc_attr( $this->overlay_opacity ); ?>" style="background-image: url('<?php echo esc_url( $this->image_src ); ?>');">
-<?php endif; ?>
 
-	<div class="column">
+?>
+<div class="hogan-banner">
+	<div class="hogan-banner-column hogan-banner-image">
 		<?php
 		if ( ! empty( $this->image ) ) {
 			echo wp_get_attachment_image(
@@ -38,46 +36,43 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		}
 		?>
 	</div>
-	<div class="column">
-		<?php
-		if ( ! empty( $this->tagline ) ) {
-			printf(
-				'<div class="tagline">%s</div>',
-				esc_html( $this->tagline )
-			);
-		}
-
-		if ( ! empty( $this->heading ) ) {
-			hogan_component(
-				'heading', [
-					'title' => $this->heading,
-				]
-			);
-		}
-
-		if ( ! empty( $this->content ) ) {
-			echo wp_kses(
-				$this->content, [
-					'p'  => [],
-					'br' => [],
-				]
-			);
-		}
-
-		if ( ! empty( $this->call_to_actions ) ) {
-			echo '<div>';
-			foreach ( $this->call_to_actions as $button ) {
-				echo '<span>';
-				hogan_component( 'button', $button );
-				echo '</span>';
+	<div class="hogan-banner-column hogan-banner-content">
+		<div class="hogan-banner-content-inner">
+			<?php
+			if ( ! empty( $this->tagline ) ) {
+				printf(
+					'<div class="hogan-tagline">%s</div>',
+					esc_html( $this->tagline )
+				);
 			}
-			echo '</div>';
-		}
 
-		?>
+			if ( ! empty( $this->heading ) ) {
+				hogan_component(
+					'heading', [
+						'title' => $this->heading,
+					]
+				);
+			}
+
+			if ( ! empty( $this->content ) ) {
+				echo wp_kses(
+					$this->content, [
+						'p'  => [],
+						'br' => [],
+					]
+				);
+			}
+
+			if ( ! empty( $this->call_to_actions ) ) {
+				echo '<div>';
+				foreach ( $this->call_to_actions as $button ) {
+					echo '<span>';
+					hogan_component( 'button', $button );
+					echo '</span>';
+				}
+				echo '</div>';
+			}
+			?>
+		</div>
 	</div>
-
-	<?php
-	if ( 'large' === $this->image_size && ! empty( $this->image_src ) ) {
-		echo '</div>';
-	}
+</div>
