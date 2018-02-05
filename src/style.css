@@ -48,6 +48,10 @@
 		position: relative;
 	}
 
+	.hogan-banner-content-inner {
+		padding: 40px;
+	}
+
 	.hogan-banner-image,
 	.hogan-banner-image img {
 		height: 100%;
@@ -130,6 +134,14 @@
 			display: inline-block;
 			min-height: 0;
 			width: 50%;
+
+			@nest .hogan-banner-theme-transparent-light& {
+				padding: 0;
+			}
+
+			@nest .hogan-banner-theme-transparent-dark& {
+				padding: 0;
+			}
 		}
 
 		&.hogan-banner-content-center .hogan-banner-content {
