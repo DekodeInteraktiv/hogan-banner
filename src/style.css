@@ -166,30 +166,10 @@
 	}
 }
 
-@define-mixin backgroundShades $color {
-	@nest .hogan-banner-bg-opacity-60& {
-		background-color: color( $color alpha( 0.6 ) );
-	}
-
-	@nest .hogan-banner-bg-opacity-70& {
-		background-color: color( $color alpha( 0.7 ) );
-	}
-
-	@nest .hogan-banner-bg-opacity-80& {
-		background-color: color( $color alpha( 0.8 ) );
-	}
-
-	@nest .hogan-banner-bg-opacity-90& {
-		background-color: color( $color alpha( 0.9 ) );
-	}
-}
-
 /*
  * Light
  */
-@mixin theme light, currentColor, #fff {
-	@mixin backgroundShades #fff;
-}
+@mixin theme light, currentColor, #fff;
 
 /*
  * Light Transparent
@@ -201,6 +181,4 @@
 /*
  * Dark
  */
-@mixin theme dark, #fff, #000 {
-	@mixin backgroundShades #000;
-}
+@mixin theme dark, #fff, #000;

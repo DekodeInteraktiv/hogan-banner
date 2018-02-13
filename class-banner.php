@@ -58,13 +58,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $theme = 'dark';
 
 		/**
-		 * Background opacity
-		 *
-		 * @var integer
-		 */
-		public $background_opacity = 60;
-
-		/**
 		 * Tagline
 		 *
 		 * @var string|null
@@ -453,11 +446,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
 			parent::load_args_from_layout_content( $raw_content, $counter );
-
-			// Settings.
-			if ( ! empty( $raw_content['background_opacity'] ) ) {
-				$this->background_opacity = $raw_content['background_opacity'];
-			}
 
 			if ( ! empty( $raw_content['content_position'] ) ) {
 				$this->content_position = $raw_content['content_position'];
