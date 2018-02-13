@@ -508,7 +508,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			if ( ! empty( $raw_content['cta'] ) ) {
 				$cta              = $raw_content['cta'];
 				$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-banner' );
-				$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
+				$cta['classname'] = apply_filters( 'hogan/module/banner/cta/classnames', '', $this );
 
 				$call_to_actions[] = $cta;
 			}
@@ -516,7 +516,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			if ( true === apply_filters( 'hogan/module/banner/secondary_cta/enabled', false ) && ! empty( $raw_content['secondary_cta'] ) ) {
 				$secondary_cta              = $raw_content['secondary_cta'];
 				$secondary_cta['title']     = $secondary_cta['title'] ?: __( 'Read more', 'hogan-banner' );
-				$secondary_cta['classname'] = apply_filters( 'hogan/module/banner/secondary_cta_css_classes', 'hogan-secondary-button', $this );
+				$secondary_cta['classname'] = apply_filters( 'hogan/module/banner/secondary_cta/classnames', 'hogan-secondary-button', $this );
 
 				$call_to_actions[] = $secondary_cta;
 			}
