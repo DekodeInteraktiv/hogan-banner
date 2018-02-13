@@ -58,6 +58,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $theme = 'dark';
 
 		/**
+		 * Theme transparent
+		 *
+		 * @var bool
+		 */
+		public $theme_text_bg = true;
+
+		/**
 		 * Tagline
 		 *
 		 * @var string|null
@@ -428,10 +435,15 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$classnames[] = 'hogan-module-width-' . $module->width;
 			}
 
+			if ( $module->theme_text_bg && 'full' === $module->layout ) {
+				$classnames[] = 'hogan-banner-theme-' . $module->theme . '-transparent';
+			} else {
+				$classnames[] = 'hogan-banner-theme-' . $module->theme;
+			}
+
 			return array_merge( $classnames, [
 				'hogan-banner-layout-' . $module->layout,
 				'hogan-banner-text-' . $module->text_align,
-				'hogan-banner-theme-' . $module->theme,
 			] );
 		}
 
@@ -466,6 +478,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			if ( ! empty( $raw_content['width'] ) ) {
 				$this->width = $raw_content['width'];
 			}
+
+			$this->theme_text_bg = ! $raw_content['theme_text_bg'];
 
 			// Image.
 			if ( ! empty( $raw_content['image_id'] ) ) {
