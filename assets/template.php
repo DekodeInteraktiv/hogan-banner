@@ -26,12 +26,12 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 <div class="hogan-banner">
 	<div class="hogan-banner-column hogan-banner-image">
 		<?php
-		if ( ! empty( $this->image ) ) {
+		if ( ! empty( $this->main_image ) ) {
 			echo wp_get_attachment_image(
-				$this->image['id'],
-				$this->image['size'],
-				$this->image['icon'],
-				$this->image['attr']
+				$this->main_image['id'],
+				$this->main_image['size'],
+				$this->main_image['icon'],
+				$this->main_image['attr']
 			);
 		}
 		?>
@@ -39,6 +39,15 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 	<div class="hogan-banner-column hogan-banner-content">
 		<div class="hogan-banner-content-inner">
 			<?php
+			if ( ! empty( $this->image ) ) {
+				echo wp_get_attachment_image(
+					$this->image['id'],
+					$this->image['size'],
+					$this->image['icon'],
+					$this->image['attr']
+				);
+			}
+
 			if ( ! empty( $this->tagline ) ) {
 				printf(
 					'<div class="hogan-tagline">%s</div>',

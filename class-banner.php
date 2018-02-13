@@ -79,6 +79,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $content = null;
 
 		/**
+		 * Main Image
+		 *
+		 * @var array|null
+		 */
+		public $main_image = null;
+
+		/**
 		 * Image
 		 *
 		 * @var array|null
@@ -481,6 +488,20 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 
 			$this->theme_text_bg = ! $raw_content['theme_text_bg'];
 
+			// Main Image.
+			if ( ! empty( $raw_content['main_image_id'] ) ) {
+				$main_image = wp_parse_args(
+					apply_filters( 'hogan/module/banner/main_image/args', [] ), [
+						'size' => 'full',
+						'icon' => false,
+						'attr' => [],
+					]
+				);
+
+				$main_image['id'] = $raw_content['main_image_id'];
+				$this->main_image = $main_image;
+			}
+
 			// Image.
 			if ( ! empty( $raw_content['image_id'] ) ) {
 				$image = wp_parse_args(
@@ -531,7 +552,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * @return bool Whether validation of the module is successful / filled with content.
 		 */
 		public function validate_args(): bool {
-			return ! empty( $this->image ) || empty( apply_filters( 'hogan/module/banner/image/required', 1 ) );
+			return ! empty( $this->main_image ) || empty( apply_filters( 'hogan/module/banner/main_image/required', 1 ) );
 		}
 	}
 } // End if().
