@@ -163,15 +163,53 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			];
 
 			/*
+			 * Layout setting
+			 */
+			$content_tab[] = apply_filters( 'hogan/module/banner/acf/layout', [
+				'type'          => 'button_group',
+				'key'           => $this->field_key . '_layout',
+				'name'          => 'layout',
+				'label'         => __( 'Layout', 'hogan-banner' ),
+				'default_value' => 'columns',
+				'choices'       => [
+					'columns' => __( 'Half and half ', 'hogan-banner' ),
+					'full'    => __( 'Full background', 'hogan-banner' ),
+				],
+				'layout'        => 'horizontal',
+				'return_format' => 'value',
+				'wrapper'       => [
+					'width' => 50,
+				],
+			] );
+
+			/*
+			 * Main banner image field
+			 */
+			$content_tab[] = apply_filters( 'hogan/module/banner/acf/main_image', [
+				'type'          => 'image',
+				'key'           => $this->field_key . '_main_image_id',
+				'name'          => 'main_image_id',
+				'label'         => __( 'Banner Image', 'hogan-banner' ),
+				'instructions'  => '',
+				'required'      => true,
+				'return_format' => 'id',
+				'preview_size'  => 'medium',
+				'library'       => 'all',
+				'wrapper'       => [
+					'width' => 50,
+				],
+			] );
+
+			/*
 			 * Image field
 			 */
 			$content_tab[] = apply_filters( 'hogan/module/banner/acf/image', [
 				'type'          => 'image',
 				'key'           => $this->field_key . '_image_id',
 				'name'          => 'image_id',
-				'label'         => __( 'Add Image', 'hogan-banner' ),
+				'label'         => __( 'Content Image', 'hogan-banner' ),
 				'instructions'  => '',
-				'required'      => true,
+				'required'      => false,
 				'return_format' => 'id',
 				'preview_size'  => 'medium',
 				'library'       => 'all',
@@ -231,69 +269,39 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			}
 
 			/*
-			 * Layout setting
-			 */
-			$settings_tab[] = apply_filters( 'hogan/module/banner/acf/layout', [
-				'type'          => 'button_group',
-				'key'           => $this->field_key . '_layout',
-				'name'          => 'layout',
-				'label'         => __( 'Layout', 'hogan-banner' ),
-				'default_value' => 'columns',
-				'choices'       => [
-					'columns'         => __( 'Half and half', 'hogan-banner' ),
-					'columns-full-bg' => __( 'Half and half - Full background', 'hogan-banner' ),
-					'full'            => __( 'Background image', 'hogan-banner' ),
-				],
-				'layout'        => 'horizontal',
-				'return_format' => 'value',
-			] );
-
-			/*
 			 * Theme setting
 			 */
 			if ( true === apply_filters( 'hogan/module/banner/acf/theme/enabled', true ) ) {
-				$settings_tab[] = apply_filters( 'hogan/module/banner/acf/theme_full', [
-					'type'              => 'button_group',
-					'key'               => $this->field_key . '_theme_full',
-					'name'              => 'theme',
-					'label'             => __( 'Theme', 'hogan-banner' ),
-					'default_value'     => apply_filters( 'hogan/module/banner/defaults/theme_full', 'transparent-dark' ),
-					'choices'           => [
-						'transparent-dark'  => __( 'Transparent Dark', 'hogan-banner' ),
-						'transparent-light' => __( 'Transparent Light', 'hogan-banner' ),
-						'dark'              => __( 'Dark', 'hogan-banner' ),
-						'light'             => __( 'Light', 'hogan-banner' ),
+
+				$settings_tab[] = apply_filters( 'hogan/module/banner/acf/theme', [
+					'type'          => 'button_group',
+					'key'           => $this->field_key . '_theme',
+					'name'          => 'theme',
+					'label'         => __( 'Theme', 'hogan-banner' ),
+					'instructions'  => __( 'Background color for content', 'hogan-banner' ),
+					'default_value' => apply_filters( 'hogan/module/banner/defaults/theme', 'full' ),
+					'choices'       => [
+						'dark'  => __( 'Dark', 'hogan-banner' ),
+						'light' => __( 'Light', 'hogan-banner' ),
 					],
-					'layout'            => 'horizontal',
-					'return_format'     => 'value',
+					'layout'        => 'horizontal',
+					'return_format' => 'value',
+					'wrapper'       => [
+						'width' => 50,
+					],
+				] );
+
+				$settings_tab[] = apply_filters( 'hogan/module/banner/acf/theme_on_full', [
+					'type'              => 'true_false',
+					'key'               => $this->field_key . 'theme_on_full',
+					'name'              => 'theme_text_bg',
+					'label'             => __( 'Content background', 'hogan-banner' ),
+					'instructions'      => __( 'Use theme color as background for content?', 'hogan-banner' ),
 					'conditional_logic' => [
 						[
 							[
 								'field'    => $this->field_key . '_layout',
 								'operator' => '==',
-								'value'    => 'full',
-							],
-						],
-					],
-				] );
-
-				$settings_tab[] = apply_filters( 'hogan/module/banner/acf/theme', [
-					'type'              => 'button_group',
-					'key'               => $this->field_key . '_theme',
-					'name'              => 'theme',
-					'label'             => __( 'Theme', 'hogan-banner' ),
-					'default_value'     => apply_filters( 'hogan/module/banner/defaults/theme', 'full' ),
-					'choices'           => [
-						'dark'  => __( 'Dark', 'hogan-banner' ),
-						'light' => __( 'Light', 'hogan-banner' ),
-					],
-					'layout'            => 'horizontal',
-					'return_format'     => 'value',
-					'conditional_logic' => [
-						[
-							[
-								'field'    => $this->field_key . '_layout',
-								'operator' => '!=',
 								'value'    => 'full',
 							],
 						],
@@ -309,29 +317,18 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			 */
 			if ( true === apply_filters( 'hogan/module/banner/acf/width/enabled', true ) ) {
 				$settings_tab[] = apply_filters( 'hogan/module/banner/acf/width', [
-					'type'              => 'button_group',
-					'key'               => $this->field_key . '_width',
-					'name'              => 'width',
-					'label'             => __( 'Width', 'hogan-banner' ),
-					'default_value'     => apply_filters( 'hogan/module/banner/defaults/width', 'full' ),
-					'choices'           => [
+					'type'          => 'button_group',
+					'key'           => $this->field_key . '_width',
+					'name'          => 'width',
+					'label'         => __( 'Width', 'hogan-banner' ),
+					'instructions'  => '',
+					'default_value' => apply_filters( 'hogan/module/banner/defaults/width', 'full' ),
+					'choices'       => [
 						'full' => __( 'Full', 'hogan-banner' ),
 						'grid' => __( 'Grid', 'hogan-banner' ),
 					],
-					'layout'            => 'horizontal',
-					'return_format'     => 'value',
-					'conditional_logic' => [
-						[
-							[
-								'field'    => $this->field_key . '_layout',
-								'operator' => '!=',
-								'value'    => 'full',
-							],
-						],
-					],
-					'wrapper'           => [
-						'width' => 50,
-					],
+					'layout'        => 'horizontal',
+					'return_format' => 'value',
 				] );
 			}
 
@@ -344,6 +341,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'               => $this->field_key . '_content_position_full',
 					'name'              => 'content_position',
 					'label'             => __( 'Content position', 'hogan-banner' ),
+					'instructions'      => __( 'Position content on banner', 'hogan-banner' ),
 					'default_value'     => apply_filters( 'hogan/module/banner/defaults/content_position', 'left' ),
 					'choices'           => [
 						'left'   => '<i class="dashicons dashicons-align-left"></i>',
@@ -352,9 +350,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					],
 					'layout'            => 'horizontal',
 					'return_format'     => 'value',
-					'wrapper'           => [
-						'width' => 50,
-					],
 					'conditional_logic' => [
 						[
 							[
@@ -371,6 +366,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'               => $this->field_key . '_content_position',
 					'name'              => 'content_position',
 					'label'             => __( 'Content position', 'hogan-banner' ),
+					'instructions'      => __( 'Position content on banner', 'hogan-banner' ),
 					'default_value'     => apply_filters( 'hogan/module/banner/defaults/content_position', 'left' ),
 					'choices'           => [
 						'left'  => '<i class="dashicons dashicons-align-left"></i>',
@@ -378,9 +374,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					],
 					'layout'            => 'horizontal',
 					'return_format'     => 'value',
-					'wrapper'           => [
-						'width' => 50,
-					],
 					'conditional_logic' => [
 						[
 							[
@@ -402,6 +395,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'           => $this->field_key . '_text_align',
 					'name'          => 'text_align',
 					'label'         => __( 'Text align', 'hogan-banner' ),
+					'instructions'  => __( 'Align text in content', 'hogan-banner' ),
 					'default_value' => apply_filters( 'hogan/module/banner/defaults/text_align', 'left' ),
 					'choices'       => [
 						'left'   => '<i class="dashicons dashicons-editor-alignleft"></i>',
@@ -410,34 +404,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					],
 					'layout'        => 'horizontal',
 					'return_format' => 'value',
-					'wrapper'       => [
-						'width' => 50,
-					],
 				] );
 			}
-
-			/*
-			 * Background opacity
-			 */
-			$settings_tab[] = apply_filters( 'hogan/module/banner/acf/background_opacity', [
-				'type'              => 'range',
-				'key'               => $this->field_key . '_background_opacity',
-				'name'              => 'background_opacity',
-				'label'             => __( 'Background opacity', 'hogan-banner' ),
-				'default_value'     => 60,
-				'min'               => 60,
-				'max'               => 90,
-				'step'              => 10,
-				'conditional_logic' => [
-					[
-						[
-							'field'    => $this->field_key . '_layout',
-							'operator' => '==',
-							'value'    => 'columns-full-bg',
-						],
-					],
-				],
-			] );
 
 			return array_merge(
 				$content_tab,
@@ -455,10 +423,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public function outer_wrapper_classes( array $classnames, Module $module ) : array {
 			if ( $this->name !== $module->name ) {
 				return $classnames;
-			}
-
-			if ( 'columns-full-bg' === $module->layout && ! empty( $module->background_opacity ) ) {
-				$classnames[] = 'hogan-banner-bg-opacity-' . $module->background_opacity;
 			}
 
 			if ( ! empty( $module->content_position ) ) {
