@@ -99,23 +99,6 @@
 		}
 	}
 
-	.hogan-banner-layout-columns-full-bg {
-		& .hogan-banner-image {
-			width: 100%;
-		}
-
-		& .hogan-banner-content {
-			margin-left: 50%;
-			width: 50%;
-		}
-
-		&.hogan-banner-content-left {
-			& .hogan-banner-content {
-				margin-left: 0;
-			}
-		}
-	}
-
 	.hogan-banner-layout-full {
 		& .hogan-banner {
 			min-height: 560px;
