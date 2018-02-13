@@ -210,17 +210,19 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			/*
 			 * Image field
 			 */
-			$content_tab[] = apply_filters( 'hogan/module/banner/acf/image', [
-				'type'          => 'image',
-				'key'           => $this->field_key . '_image_id',
-				'name'          => 'image_id',
-				'label'         => __( 'Content Image', 'hogan-banner' ),
-				'instructions'  => '',
-				'required'      => false,
-				'return_format' => 'id',
-				'preview_size'  => 'medium',
-				'library'       => 'all',
-			] );
+			if ( true === apply_filters( 'hogan/module/banner/image/enabled', false ) ) {
+				$content_tab[] = apply_filters( 'hogan/module/banner/acf/image', [
+					'type'          => 'image',
+					'key'           => $this->field_key . '_image_id',
+					'name'          => 'image_id',
+					'label'         => __( 'Content Image', 'hogan-banner' ),
+					'instructions'  => '',
+					'required'      => false,
+					'return_format' => 'id',
+					'preview_size'  => 'medium',
+					'library'       => 'all',
+				] );
+			}
 
 			/*
 			 * Tagline
