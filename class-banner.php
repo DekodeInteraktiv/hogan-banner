@@ -203,7 +203,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			/*
 			 * Image field
 			 */
-			if ( true === apply_filters( 'hogan/module/banner/image/enabled', false ) ) {
+			if ( true === apply_filters( 'hogan/module/banner/image/enabled', true ) ) {
 				$content_tab[] = apply_filters( 'hogan/module/banner/acf/image', [
 					'type'          => 'image',
 					'key'           => $this->field_key . '_image_id',
