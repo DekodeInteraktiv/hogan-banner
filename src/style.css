@@ -149,6 +149,20 @@
 	}
 }
 
+@define-mixin altTheme $themeName, $color: currentColor, $backgroundColor: transparent {
+	.hogan-banner-theme-$(themeName).hogan-banner-layout-full .hogan-banner-content-inner {
+		background-color: $backgroundColor;
+		color: $color;
+	}
+
+	@media screen and ( min-width: 768px ) {
+		.hogan-banner-theme-$(themeName).hogan-banner-layout-full .hogan-banner-content-inner {
+			@mixin-content;
+			background-color: transparent;
+		}
+	}
+}
+
 /*
  * Light
  */
@@ -157,11 +171,14 @@
 /*
  * Light Transparent
  */
-@mixin theme light-transparent, #fff {
-	text-shadow: 1px 1px 3px rgba( 0, 0, 0, 0.5 );
-}
+@mixin altTheme light-transparent, currentColor, #fff;
 
 /*
  * Dark
  */
 @mixin theme dark, #fff, #000;
+
+/*
+ * Dark Transparent
+ */
+@mixin altTheme dark-transparent, #fff, #000;
