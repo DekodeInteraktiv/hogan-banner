@@ -170,9 +170,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				'key'           => $this->field_key . '_layout',
 				'name'          => 'layout',
 				'label'         => __( 'Layout', 'hogan-banner' ),
+				'instructions'  => __( 'Will the image take up the full banner or just half?', 'hogan-banner' ),
 				'default_value' => 'columns',
 				'choices'       => [
-					'columns' => __( 'Half and half ', 'hogan-banner' ),
+					'columns' => __( 'Half', 'hogan-banner' ),
 					'full'    => __( 'Full background', 'hogan-banner' ),
 				],
 				'layout'        => 'horizontal',
@@ -219,10 +220,14 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 
 			/*
 			 * Heading field
-			 *
-			 * Can be disabled using filter hogan/module/banner/heading/enabled (true/false).
 			 */
-			hogan_append_heading_field( $content_tab, $this );
+			$content_tab[] = apply_filters( 'hogan/module/banner/acf/content_heading', [
+				'type'     => 'text',
+				'key'      => $this->field_key . 'content_heading',
+				'name'     => 'content_heading',
+				'label'    => __( 'Add heading', 'hogan-banner' ),
+				'required' => false,
+			] );
 
 			/*
 			 * Content field
@@ -268,7 +273,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'           => $this->field_key . '_theme',
 					'name'          => 'theme',
 					'label'         => __( 'Theme', 'hogan-banner' ),
-					'instructions'  => __( 'Background color for content', 'hogan-banner' ),
+					'instructions'  => __( 'Background color for content.', 'hogan-banner' ),
 					'default_value' => apply_filters( 'hogan/module/banner/defaults/theme', 'full' ),
 					'choices'       => [
 						'dark'  => __( 'Dark', 'hogan-banner' ),
@@ -311,11 +316,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'           => $this->field_key . '_width',
 					'name'          => 'width',
 					'label'         => __( 'Width', 'hogan-banner' ),
-					'instructions'  => '',
+					'instructions'  => __( 'Full width banner, or add margins?', 'hogan-banner' ),
 					'default_value' => apply_filters( 'hogan/module/banner/defaults/width', 'full' ),
 					'choices'       => [
-						'full' => __( 'Full', 'hogan-banner' ),
-						'grid' => __( 'Grid', 'hogan-banner' ),
+						'full' => __( 'Full width', 'hogan-banner' ),
+						'grid' => __( 'Grid width', 'hogan-banner' ),
 					],
 					'layout'        => 'horizontal',
 					'return_format' => 'value',
@@ -331,7 +336,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'               => $this->field_key . '_content_position_full',
 					'name'              => 'content_position',
 					'label'             => __( 'Content position', 'hogan-banner' ),
-					'instructions'      => __( 'Position content on banner', 'hogan-banner' ),
+					'instructions'      => '',
 					'default_value'     => apply_filters( 'hogan/module/banner/defaults/content_position', 'left' ),
 					'choices'           => [
 						'left'   => '<i class="dashicons dashicons-align-left"></i>',
@@ -356,7 +361,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'               => $this->field_key . '_content_position',
 					'name'              => 'content_position',
 					'label'             => __( 'Content position', 'hogan-banner' ),
-					'instructions'      => __( 'Position content on banner', 'hogan-banner' ),
+					'instructions'      => '',
 					'default_value'     => apply_filters( 'hogan/module/banner/defaults/content_position', 'left' ),
 					'choices'           => [
 						'left'  => '<i class="dashicons dashicons-align-left"></i>',
@@ -385,7 +390,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'key'           => $this->field_key . '_text_align',
 					'name'          => 'text_align',
 					'label'         => __( 'Text align', 'hogan-banner' ),
-					'instructions'  => __( 'Align text in content', 'hogan-banner' ),
+					'instructions'  => '',
 					'default_value' => apply_filters( 'hogan/module/banner/defaults/text_align', 'left' ),
 					'choices'       => [
 						'left'   => '<i class="dashicons dashicons-editor-alignleft"></i>',
@@ -500,6 +505,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			} else {
 				$this->image = null;
 			}
+
+			// Heading.
+			$this->heading = $raw_content['content_heading'];
 
 			// Content.
 			$this->content = $raw_content['content'];
