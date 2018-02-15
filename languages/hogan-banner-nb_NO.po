@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Banner\n"
-"POT-Creation-Date: 2018-02-05 10:29+0100\n"
-"PO-Revision-Date: 2018-02-05 10:32+0100\n"
+"POT-Creation-Date: 2018-02-15 10:31+0100\n"
+"PO-Revision-Date: 2018-02-15 10:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -34,86 +34,94 @@ msgid "Settings"
 msgstr "Innstillinger"
 
 #: class-banner.php:172
-msgid "Add Image"
-msgstr "Legg til bilde"
+msgid "Layout"
+msgstr "Layout hovedbilde"
 
-#: class-banner.php:187
-msgid "Tagline"
-msgstr "Stikktittel"
+#: class-banner.php:173
+msgid "Will the image take up the full banner or just half?"
+msgstr "Hvor stor del av banneret skal bildet dekke?"
 
-#: class-banner.php:206
+#: class-banner.php:176
+msgid "Half"
+msgstr "Halve"
+
+#: class-banner.php:177
+msgid "Full background"
+msgstr "Hele"
+
+#: class-banner.php:193
+msgid "Banner Image"
+msgstr "Hovedbilde"
+
+#: class-banner.php:212
+msgid "Content Image"
+msgstr "Bilde til tekst"
+
+#: class-banner.php:228
+msgid "Add heading"
+msgstr "Overskrift"
+
+#: class-banner.php:239
 msgid "Add content"
 msgstr "Legg til innhold"
 
-#: class-banner.php:218
+#: class-banner.php:251
 msgid "Call to action"
 msgstr "Lenke"
 
-#: class-banner.php:227
+#: class-banner.php:260
 msgid "Secondary call to action"
 msgstr "Tilleggslenke"
 
-#: class-banner.php:240
-msgid "Layout"
-msgstr "Layout"
-
-#: class-banner.php:243
-msgid "Half and half"
-msgstr "Halv og halv"
-
-#: class-banner.php:244
-msgid "Half and half - Full background"
-msgstr "Halv og halv - Full bakgrunn"
-
-#: class-banner.php:245
-msgid "Background image"
-msgstr "Bakgrunnsbilde"
-
-#: class-banner.php:259 class-banner.php:284
+#: class-banner.php:275
 msgid "Theme"
 msgstr "Tema"
 
-#: class-banner.php:262
-msgid "Transparent Dark"
-msgstr "Gjennomsiktig mørk"
+#: class-banner.php:276
+msgid "Background color for content."
+msgstr "Bakgrunnsfarge for tekst."
 
-#: class-banner.php:263
-msgid "Transparent Light"
-msgstr "Gjennomsiktig lys"
-
-#: class-banner.php:264 class-banner.php:287
+#: class-banner.php:279
 msgid "Dark"
 msgstr "Mørk"
 
-#: class-banner.php:265 class-banner.php:288
+#: class-banner.php:280
 msgid "Light"
 msgstr "Lys"
 
-#: class-banner.php:315
+#: class-banner.php:293
+msgid "Content background"
+msgstr "Vis bakgrunnsfarge"
+
+#: class-banner.php:294
+msgid "Use theme color as background for content?"
+msgstr "Legg temafarge bak tekst?"
+
+#: class-banner.php:318
 msgid "Width"
 msgstr "Bredde"
 
-#: class-banner.php:318
-msgid "Full"
+#: class-banner.php:319
+msgid "Full width banner, or add margins?"
+msgstr "Full bredde eller marg på sidene?"
+
+#: class-banner.php:322
+msgid "Full width"
 msgstr "Full"
 
-#: class-banner.php:319
-msgid "Grid"
-msgstr "Rutenett"
+#: class-banner.php:323
+msgid "Grid width"
+msgstr "Med marg"
 
-#: class-banner.php:346 class-banner.php:373
+#: class-banner.php:338 class-banner.php:363
 msgid "Content position"
-msgstr "Innholdsposisjon"
+msgstr "Plasser innhold på banner"
 
-#: class-banner.php:404
+#: class-banner.php:392
 msgid "Text align"
 msgstr "Tekstjustering"
 
-#: class-banner.php:426
-msgid "Background opacity"
-msgstr "Bakgrunnens gjennomsiktighet"
-
-#: class-banner.php:545 class-banner.php:553
+#: class-banner.php:520 class-banner.php:528
 msgid "Read more"
 msgstr "Les mer"
 
@@ -137,6 +145,30 @@ msgstr "Dekode"
 msgid "https://dekode.no"
 msgstr "https://dekode.no"
 
+#~ msgid "Full"
+#~ msgstr "Full"
+
+#~ msgid "Grid"
+#~ msgstr "Rutenett"
+
+#~ msgid "Half and half "
+#~ msgstr "Halve "
+
+#~ msgid "Tagline"
+#~ msgstr "Stikktittel"
+
+#~ msgid "Background image"
+#~ msgstr "Bakgrunnsbilde"
+
+#~ msgid "Transparent Dark"
+#~ msgstr "Gjennomsiktig mørk"
+
+#~ msgid "Transparent Light"
+#~ msgstr "Gjennomsiktig lys"
+
+#~ msgid "Background opacity"
+#~ msgstr "Bakgrunnens gjennomsiktighet"
+
 #~ msgctxt "Image Format"
 #~ msgid "Square"
 #~ msgstr "Firkanta"
@@ -154,9 +186,6 @@ msgstr "https://dekode.no"
 
 #~ msgid "Choose image size"
 #~ msgstr "Velg bildestørrelse"
-
-#~ msgid "Choose background color for the text field"
-#~ msgstr "Bakgrunnsfarge på tekstfeltet"
 
 #~ msgid "Overlay Opacity"
 #~ msgstr "Overlegg dekkevne"
