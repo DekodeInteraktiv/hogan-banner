@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-banner
  * GitHub Plugin URI: https://github.com/dekodeinteraktiv/hogan-banner
  * Description: Banner Module for Hogan.
- * Version: 1.1.1
+ * Version: 2.0.0
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0-or-later
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'HOGAN_BANNER_VERSION', '1.1.1' );
+define( 'HOGAN_BANNER_VERSION', '2.0.0' );
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\hogan_load_textdomain' );
 add_action( 'hogan/include_modules', __NAMESPACE__ . '\\hogan_register_module' );
