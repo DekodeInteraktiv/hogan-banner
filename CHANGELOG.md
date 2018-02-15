@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [2.0.0] - 2018-02-15
 ### Breaking changes
 * Template `.column` classname has changed to `.hogan-banner-column`.
 * Template has a new `.hogan-banner` wrapper div.
