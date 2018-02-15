@@ -25,6 +25,7 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-banne
 - `hogan/module/banner/acf/layout` - Layout option field.
 - `hogan/module/banner/acf/main_image` - Main image field.
 - `hogan/module/banner/acf/image` - Image field.
+- `hogan/module/banner/acf/content_heading` - Heading field.
 - `hogan/module/banner/acf/content` - Content field.
 - `hogan/module/banner/acf/theme/enabled` - Enable or disable theme option. Default `true`.
 - `hogan/module/banner/acf/theme` - Theme option. Used to create different color themes.

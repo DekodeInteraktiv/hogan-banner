@@ -8,6 +8,7 @@
 * All wrapper settings classnames has changed.
 * New layout - Full background image.
 * New filters.
+* Hogan heading replaced by content_heading field.
 
 ### Internal
 * Fix deprecated inner wrapper classname filter
