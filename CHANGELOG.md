@@ -1,12 +1,21 @@
 # Changelog
 
 ## [Unreleased]
+### Breaking changes
+* Template `.column` classname has changed to `.hogan-banner-column`.
+* Template has a new `.hogan-banner` wrapper div.
+* Plugin now ships with some default CSS.
+* All wrapper settings classnames has changed.
+* New layout - Full background image.
+* New filters.
+* Hogan heading replaced by content_heading field.
+
 ### Internal
 * Fix deprecated inner wrapper classname filter
 
 ## [1.1.1] - 2018-01-29
-- Added optional secondary call to action button
-    - Use filter `hogan/module/banner/secondary_cta/enabled` to enable. Default `false`.
+* Added optional secondary call to action button
+	* Use filter `hogan/module/banner/secondary_cta/enabled` to enable. Default `false`.
 
 ## [1.1.0] - 2018-01-26
 ### Breaking Change
