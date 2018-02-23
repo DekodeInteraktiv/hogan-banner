@@ -543,4 +543,5 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			return ! empty( $this->main_image ) || empty( apply_filters( 'hogan/module/banner/main_image/required', 1 ) );
 		}
 	}
-} // End if().
+}
+// End if().
