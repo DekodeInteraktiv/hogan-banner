@@ -60,7 +60,6 @@
 	.hogan-banner-image img {
 		height: 100%;
 		left: 0;
-		position: absolute;
 		top: 0;
 		width: 100%;
 	}
@@ -75,7 +74,6 @@
 	.hogan-banner-content {
 		align-items: center;
 		display: flex;
-		min-height: 560px;
 		position: relative;
 	}
 
@@ -88,13 +86,12 @@
 		}
 
 		& .hogan-banner-content {
-			margin-left: 50%;
 			width: 50%;
 		}
 
 		&.hogan-banner-content-left {
-			& .hogan-banner-image {
-				left: 50%;
+			.hogan-banner {
+				flex-direction: row-reverse;
 			}
 
 			& .hogan-banner-content {
@@ -104,9 +101,6 @@
 	}
 
 	.hogan-banner-layout-full {
-		& .hogan-banner {
-			min-height: 560px;
-		}
 
 		& .hogan-banner-content {
 			background-color: transparent !important; /* stylelint-disable-line declaration-no-important */
