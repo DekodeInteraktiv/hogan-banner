@@ -65,6 +65,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $theme_text_bg = true;
 
 		/**
+		 * Banner tagline - optional
+		 *
+		 * @var string|null $tagline
+		 */
+		public $tagline = null;
+
+		/**
 		 * Content
 		 *
 		 * @var string|null
@@ -226,7 +233,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					'type'  => 'text',
 					'key'   => $this->field_key . '_tagline',
 					'name'  => 'tagline',
-					'label' => __( 'Add tagline', 'hogan-banner' ),
+					'label' => __( 'Tagline', 'hogan-banner' ),
 				] );
 			}
 

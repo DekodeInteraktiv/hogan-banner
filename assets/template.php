@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 
 			if ( ! empty( $this->tagline ) ) {
 				printf(
-					'<div class="tagline">%s</div>',
+					'<div class="hogan-tagline">%s</div>',
 					esc_html(
 						$this->tagline
 					)
