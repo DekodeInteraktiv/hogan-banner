@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1] - 2018-03-22
+* Added optional tagline.
+### Two new filters
+* `hogan/module/banner/acf/tagline` - Tagline field.
+* `hogan/module/banner/tagline/enabled` - Enable or disable tagline. Default `false`.Can be turned on using filter : `` . Default is off.
+
 ## [2.0.0] - 2018-02-15
 ### Breaking changes
 * Template `.column` classname has changed to `.hogan-banner-column`.
