@@ -4,7 +4,7 @@
 * Added optional tagline.
 ### Two new filters
 * `hogan/module/banner/acf/tagline` - Tagline field.
-* `hogan/module/banner/tagline/enabled` - Enable or disable tagline. Default `false`.Can be turned on using filter : `` . Default is off.
+* `hogan/module/banner/tagline/enabled` - Enable or disable tagline. Default `false`.
 
 ## [2.0.0] - 2018-02-15
 ### Breaking changes
