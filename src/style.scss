@@ -1,0 +1,128 @@
+/**
+ * Hogan Banner
+ */
+@import "~heisenberg-dev-utils/mixins/clearfix.scss";
+
+.hogan-banner {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1920px;
+}
+
+.hogan-banner,
+.hogan-banner-content-inner {
+	@include clearfix;
+}
+
+/**
+ * Content and text align
+ */
+.hogan-banner-content-inner {
+	padding: 20px;
+}
+
+.hogan-banner-content-inner,
+.hogan-banner-image img {
+	width: 100%;
+}
+
+@each $text_align in ( left center right ) {
+	.hogan-banner-text-#{$text_align} .hogan-banner-content-inner {
+		text-align: #{$text_align};
+	}
+}
+
+@media screen and ( min-width: 768px ) {
+	.hogan-banner {
+		align-items: center;
+		display: flex;
+		position: relative;
+	}
+
+	.hogan-banner-content-inner {
+		padding: 40px;
+	}
+
+	.hogan-banner-image,
+	.hogan-banner-image img {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	.hogan-banner-image img {
+		object-fit: cover;
+	}
+
+	/**
+	 * Content and text align
+	 */
+	.hogan-banner-content {
+		align-items: center;
+		display: flex;
+		min-height: 560px;
+		position: relative;
+	}
+
+	/*
+	 * Layouts
+	 */
+	.hogan-banner-layout-columns {
+		.hogan-banner-image {
+			width: 50%;
+		}
+
+		.hogan-banner-content {
+			margin-left: 50%;
+			width: 50%;
+		}
+
+		&.hogan-banner-content-left {
+			.hogan-banner-image {
+				left: 50%;
+			}
+
+			.hogan-banner-content {
+				margin-left: 0;
+			}
+		}
+	}
+
+	.hogan-banner-layout-full {
+		.hogan-banner {
+			min-height: 560px;
+		}
+
+		.hogan-banner-content {
+			/* stylelint-disable-next-line declaration-no-important */
+			background-color: transparent !important;
+			display: block;
+			margin-bottom: 80px;
+			margin-top: 80px;
+			min-height: 0;
+			width: 100%;
+		}
+
+		.hogan-banner-content-inner {
+			display: inline-block;
+			min-height: 0;
+			width: 50%;
+		}
+
+		&.hogan-banner-content-center .hogan-banner-content {
+			text-align: center;
+		}
+
+		&.hogan-banner-content-right .hogan-banner-content {
+			text-align: right;
+		}
+	}
+}
+
+@media screen and ( min-width: 1400px ) {
+	.hogan-banner-content-inner {
+		padding: 80px;
+	}
+}
