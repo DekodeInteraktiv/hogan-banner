@@ -1,4 +1,4 @@
-# Banner Module for [Hogan](https://github.com/dekodeinteraktiv/hogan-banner) [![Build Status](https://travis-ci.org/DekodeInteraktiv/hogan-banner.svg?branch=master)](https://travis-ci.org/DekodeInteraktiv/hogan-banner)
+# Banner Module for [Hogan](https://github.com/dekodeinteraktiv/hogan-core) [![Build Status](https://travis-ci.org/DekodeInteraktiv/hogan-banner.svg?branch=master)](https://travis-ci.org/DekodeInteraktiv/hogan-banner)
 
 ## Installation
 Install the module using Composer `composer require dekodeinteraktiv/hogan-banner` or simply by downloading this repository and placing it in `wp-content/plugins`
@@ -25,6 +25,8 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-banne
 - `hogan/module/banner/acf/layout` - Layout option field.
 - `hogan/module/banner/acf/main_image` - Main image field.
 - `hogan/module/banner/acf/image` - Image field.
+- `hogan/module/banner/acf/tagline` - Tagline field.
+- `hogan/module/banner/tagline/enabled` - Enable or disable tagline. Default `false`.
 - `hogan/module/banner/acf/content_heading` - Heading field.
 - `hogan/module/banner/acf/content` - Content field.
 - `hogan/module/banner/acf/theme/enabled` - Enable or disable theme option. Default `true`.

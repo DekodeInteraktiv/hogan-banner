@@ -48,6 +48,15 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 				);
 			}
 
+			if ( ! empty( $this->tagline ) ) {
+				printf(
+					'<div class="hogan-tagline">%s</div>',
+					esc_html(
+						$this->tagline
+					)
+				);
+			}
+
 			if ( ! empty( $this->heading ) ) {
 				hogan_component(
 					'heading', [

@@ -65,6 +65,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $theme_text_bg = true;
 
 		/**
+		 * Banner tagline - optional
+		 *
+		 * @var string|null $tagline
+		 */
+		public $tagline = null;
+
+		/**
 		 * Content
 		 *
 		 * @var string|null
@@ -219,6 +226,18 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			}
 
 			/*
+			 * Tagline field
+			 */
+			if ( true === apply_filters( 'hogan/module/banner/tagline/enabled', false ) ) {
+				$content_tab[] = apply_filters( 'hogan/module/banner/acf/tagline', [
+					'type'  => 'text',
+					'key'   => $this->field_key . '_tagline',
+					'name'  => 'tagline',
+					'label' => __( 'Tagline', 'hogan-banner' ),
+				] );
+			}
+
+			/*
 			 * Heading field
 			 */
 			$content_tab[] = apply_filters( 'hogan/module/banner/acf/content_heading', [
@@ -253,6 +272,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				'return_format' => 'array',
 			];
 
+			/*
+			 * Call to action secondary field
+			 */
 			if ( true === apply_filters( 'hogan/module/banner/secondary_cta/enabled', false ) ) {
 				$content_tab[] = [
 					'type'          => 'link',
@@ -504,6 +526,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$this->image = $image;
 			} else {
 				$this->image = null;
+			}
+
+			// Tagline.
+			if ( true === apply_filters( 'hogan/module/banner/tagline/enabled', false ) ) {
+				$this->tagline = $raw_content['tagline'];
 			}
 
 			// Heading.
