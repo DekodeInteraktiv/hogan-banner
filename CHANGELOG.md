@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.1] - 2018-04-23
+* Added `.hogan-banner-cta` classname on the call to actions wrapper
+
 ## [2.1.0] - 2018-04-23
 * [#18](https://github.com/DekodeInteraktiv/hogan-banner/pull/18) Add option to create a banner css themes with a filter
 
