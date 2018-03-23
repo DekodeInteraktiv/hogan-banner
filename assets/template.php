@@ -75,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 			}
 
 			if ( ! empty( $this->call_to_actions ) ) {
-				echo '<div>';
+				echo '<div class="hogan-banner-cta">';
 				foreach ( $this->call_to_actions as $button ) {
 					echo '<span>';
 					hogan_component( 'button', $button );
