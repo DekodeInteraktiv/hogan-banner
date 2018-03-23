@@ -5,11 +5,10 @@
  * @package Hogan
  */
 
-$themes  = apply_filters( 'hogan/module/banner/themes', $this->themes );
 $default = '';
 $large   = '';
 
-foreach ( $themes as $theme => $colors ) {
+foreach ( $this->themes as $theme => $colors ) {
 	$defaults = [
 		'backgroundColor' => 'transparent',
 		'color'           => 'currentColor',

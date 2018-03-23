@@ -114,19 +114,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			$this->label    = __( 'Banner', 'hogan-banner' );
 			$this->template = __DIR__ . '/assets/template.php';
 
-			$this->themes = [
-				'dark'  => [
-					'label'           => __( 'Dark', 'hogan-banner' ),
-					'backgroundColor' => '#000',
-					'color'           => '#fff',
-				],
-				'light' => [
-					'label'           => __( 'Light', 'hogan-banner' ),
-					'backgroundColor' => '#fff',
-				],
-			];
-
-			add_action( 'init', [ $this, 'set_defaults' ] );
+			$this->set_defaults();
 
 			add_filter( 'hogan/module/outer_wrapper_classes', [ $this, 'outer_wrapper_classes' ], 10, 2 );
 
@@ -143,6 +131,32 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			$this->text_align       = (string) apply_filters( 'hogan/module/banner/defaults/text_align', 'left' );
 			$this->theme            = (string) apply_filters( 'hogan/module/banner/defaults/theme', 'dark' );
 			$this->width            = (string) apply_filters( 'hogan/module/banner/defaults/width', 'full' );
+
+			/**
+			 * Filters available themes in the Banner module
+			 *
+			 * Adds theme choices backend and generates a stylesheet frontend.
+			 * Hogan Banner comes with two default themes, `dark` and `light`.
+			 *
+			 * @param array $themes {
+			 *     Array of banner themes.
+			 *
+			 *     @type string $label           Theme name.
+			 *     @type string $backgroundColor Background color.
+			 *     @type string $color           Text color.
+			 * }
+			 */
+			$this->themes = apply_filters( 'hogan/module/banner/themes', [
+				'dark'  => [
+					'label'           => __( 'Dark', 'hogan-banner' ),
+					'backgroundColor' => '#000',
+					'color'           => '#fff',
+				],
+				'light' => [
+					'label'           => __( 'Light', 'hogan-banner' ),
+					'backgroundColor' => '#fff',
+				],
+			] );
 		}
 
 		/**
@@ -160,10 +174,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 * @return array Theme choices
 		 */
 		private function get_theme_choices() : array {
-			$themes  = apply_filters( 'hogan/module/banner/themes', $this->themes );
 			$choices = [];
 
-			foreach ( $themes as $theme => $args ) {
+			foreach ( $this->themes as $theme => $args ) {
 				$choices[ $theme ] = $args['label'];
 			}
 
