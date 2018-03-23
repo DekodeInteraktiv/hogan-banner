@@ -16,26 +16,20 @@ foreach ( $this->themes as $theme => $colors ) {
 
 	$colors = wp_parse_args( $colors, $defaults );
 
-	$default .= <<<CSS
+	$default .= "
 		.hogan-banner-theme-{$theme} .hogan-banner-content,
 		.hogan-banner-theme-{$theme}.hogan-banner-layout-full .hogan-banner-content-inner,
 		.hogan-banner-theme-{$theme}-transparent.hogan-banner-layout-full .hogan-banner-content-inner {
 			background-color: {$colors['backgroundColor']};
 			color: {$colors['color']};
 		}
-CSS;
+	";
 
-	$large .= <<<CSS
+	$large .= "
 		.hogan-banner-theme-{$theme}-transparent.hogan-banner-layout-full .hogan-banner-content-inner {
 			background-color: transparent;
 		}
-CSS;
+	";
 }
 
-// phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
-echo <<<CSS
-	{$default}
-	@media screen and ( min-width: 768px ) {
-		{$large}
-	}
-CSS;
+echo trim( preg_replace( '/\s+/', ' ', "$default @media screen and ( min-width: 768px ) { $large }" ) ); // WPCS: XSS OK.
