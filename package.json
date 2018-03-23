@@ -2,16 +2,34 @@
   "name": "hogan-banner",
   "version": "1.0.0",
   "private": true,
-  "hogan": {
-    "name": "hogan-banner",
-    "css": "./src/style.css"
-  },
   "scripts": {
-    "build": "hogan-scripts build",
-    "lint": "hogan-scripts lint"
+    "build": "heisenberg-scripts build",
+    "watch": "heisenberg-scripts build --watch"
   },
+  "entry": {
+    "hogan-banner": [
+      "./src/style.scss"
+    ]
+  },
+  "heisenberg": {
+    "build": {
+      "commonsChunkPlugin": false,
+      "dest": "assets",
+      "hashFilenames": false,
+      "manifest": false
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "Edge >= 12",
+    "Explorer >= 10",
+    "iOS >= 9",
+    "Android >= 4.4",
+    "last 2 versions"
+  ],
   "devDependencies": {
-    "hogan-scripts": "0.0.8"
+    "heisenberg-dev-utils": "0.0.1",
+    "heisenberg-scripts": "0.3.4"
   },
   "dependencies": {}
 }

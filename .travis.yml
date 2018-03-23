@@ -20,7 +20,7 @@ matrix:
       env: WP_TRAVISCI=phpcs
 
     - language: node_js
-      node_js: 8
+      node_js: node
       env: WP_TRAVISCI=node
 
 before_script:
@@ -47,7 +47,7 @@ script:
       find -L . -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
       phpcs -p -s -v . --standard=./phpcs.xml --extensions=php --runtime-set testVersion $TRAVIS_PHP_VERSION
     fi
-  - if [[ "$WP_TRAVISCI" == "node" ]]; then yarn lint; fi
+  - if [[ "$WP_TRAVISCI" == "node" ]]; then yarn build; fi
 
 notifications:
   email: false
