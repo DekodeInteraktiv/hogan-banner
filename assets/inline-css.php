@@ -2,6 +2,9 @@
 /**
  * Hogan Banner CSS theme
  *
+ * Available properties:
+ * $this->themes (array) Themes
+ *
  * @package Hogan
  */
 
