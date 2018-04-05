@@ -1,9 +1,13 @@
 # Changelog
 
-## [2.1.1] - 2018-04-23
+## [2.1.2] - 2018-04-05
+* Update module to new registration method introduced in [Hogan Core #79](https://github.com/DekodeInteraktiv/hogan-core/pull/79)
+* Set hogan-core dependency `"dekodeinteraktiv/hogan-core": ">=1.1.7"`
+
+## [2.1.1] - 2018-03-23
 * Added `.hogan-banner-cta` classname on the call to actions wrapper
 
-## [2.1.0] - 2018-04-23
+## [2.1.0] - 2018-03-23
 * [#18](https://github.com/DekodeInteraktiv/hogan-banner/pull/18) Add option to create a banner css themes with a filter
 
 ## [2.0.1] - 2018-03-22
