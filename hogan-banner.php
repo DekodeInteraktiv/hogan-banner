@@ -39,8 +39,10 @@ function hogan_load_textdomain() {
 
 /**
  * Register module in Hogan
+ *
+ * @param \Dekode\Hogan\Core $core Hogan Core instance.
  */
-function hogan_register_module() {
+function hogan_register_module( \Dekode\Hogan\Core $core ) {
 	require_once 'class-banner.php';
-	\hogan_register_module( new \Dekode\Hogan\Banner() );
+	$core->register_module( new \Dekode\Hogan\Banner() );
 }
