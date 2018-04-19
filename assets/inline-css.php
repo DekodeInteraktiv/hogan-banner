@@ -14,7 +14,7 @@ $large   = '';
 foreach ( $this->themes as $theme => $colors ) {
 	$defaults = [
 		'backgroundColor' => 'transparent',
-		'color'           => 'currentColor',
+		'color'           => 'inherit',
 	];
 
 	$colors = wp_parse_args( $colors, $defaults );
