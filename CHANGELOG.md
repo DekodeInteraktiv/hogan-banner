@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.3] - 2018-04-19
+* Fix invalid `color` value in inline css. Use `inherit` as default color.
+
 ## [2.1.2] - 2018-04-05
 * Update module to new registration method introduced in [Hogan Core #79](https://github.com/DekodeInteraktiv/hogan-core/pull/79)
 * Set hogan-core dependency `"dekodeinteraktiv/hogan-core": ">=1.1.7"`
