@@ -354,25 +354,27 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 					],
 				] );
 
-				$settings_tab[] = apply_filters( 'hogan/module/banner/acf/theme_on_full', [
-					'type'              => 'true_false',
-					'key'               => $this->field_key . 'theme_on_full',
-					'name'              => 'theme_text_bg',
-					'label'             => __( 'Content background', 'hogan-banner' ),
-					'instructions'      => __( 'Use theme color as background for content?', 'hogan-banner' ),
-					'conditional_logic' => [
-						[
+				if ( true === apply_filters( 'hogan/module/banner/theme_on_full/enabled', true ) ) {
+					$settings_tab[] = apply_filters( 'hogan/module/banner/acf/theme_on_full', [
+						'type'              => 'true_false',
+						'key'               => $this->field_key . 'theme_on_full',
+						'name'              => 'theme_text_bg',
+						'label'             => __( 'Content background', 'hogan-banner' ),
+						'instructions'      => __( 'Use theme color as background for content?', 'hogan-banner' ),
+						'conditional_logic' => [
 							[
-								'field'    => $this->field_key . '_layout',
-								'operator' => '==',
-								'value'    => 'full',
+								[
+									'field'    => $this->field_key . '_layout',
+									'operator' => '==',
+									'value'    => 'full',
+								],
 							],
 						],
-					],
-					'wrapper'           => [
-						'width' => 50,
-					],
-				] );
+						'wrapper'           => [
+							'width' => 50,
+						],
+					] );
+				}
 			}
 
 			/*
@@ -542,7 +544,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$this->width = $raw_content['width'];
 			}
 
-			$this->theme_text_bg = ! $raw_content['theme_text_bg'];
+			if ( isset( $raw_content['theme_text_bg'] ) ) {
+				$this->theme_text_bg = ! $raw_content['theme_text_bg'];
+			}
 
 			// Main Image.
 			if ( ! empty( $raw_content['main_image_id'] ) ) {
