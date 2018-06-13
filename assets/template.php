@@ -5,11 +5,12 @@
  * $this is an instance of the Banner object.
  *
  * Available properties:
- * $this->call_to_actions (array)  Call to action links.
+ * $this->call_to_actions (array)       Call to action links.
  * $this->content         (string|null) Main text content.
  * $this->heading         (string|null) Module heading.
  * $this->image           (array|null)  Image.
  * $this->tagline         (string|null) Tagline.
+ * $this->dim_image       (boolean)     Should the image be dimmed.
  *
  * @package Hogan
  */
@@ -24,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 
 ?>
 <div class="hogan-banner">
-	<div class="hogan-banner-column hogan-banner-image">
+	<div class="<?php echo esc_attr( hogan_classnames( 'hogan-banner-column hogan-banner-image', [ 'hogan-banner-dim-image' => $this->dim_image ] ) ); ?>">
 		<?php
 		if ( ! empty( $this->main_image ) ) {
 			echo wp_get_attachment_image(

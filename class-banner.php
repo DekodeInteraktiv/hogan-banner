@@ -100,6 +100,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		public $image = null;
 
 		/**
+		 * Dim image
+		 *
+		 * @var boolean
+		 */
+		public $dim_image = false;
+
+		/**
 		 * Call to action links.
 		 *
 		 * @var array
@@ -576,6 +583,15 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				$this->image = $image;
 			} else {
 				$this->image = null;
+			}
+
+			if ( 'full' === $this->layout ) {
+				/**
+				 * Filters if full layout image should be dimmed.
+				 *
+				 * @param boolean $enable_dim Enable or disable dimmed image.
+				 */
+				$this->dim_image = apply_filters( 'hogan/module/banner/image/dim', true );
 			}
 
 			// Tagline.
