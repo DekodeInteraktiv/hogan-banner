@@ -28,7 +28,7 @@
     "last 2 versions"
   ],
   "devDependencies": {
-    "heisenberg-dev-utils": "0.0.1",
+    "heisenberg-dev-utils": "0.0.7",
     "heisenberg-scripts": "0.3.10"
   },
   "dependencies": {}

@@ -3526,9 +3526,9 @@ hawk@~6.0.2:
     hoek "4.x.x"
     sntp "2.x.x"
 
-heisenberg-dev-utils@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/heisenberg-dev-utils/-/heisenberg-dev-utils-0.0.1.tgz#9f3b06a4066ec453bc7bd17eb75426f638aced75"
+heisenberg-dev-utils@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/heisenberg-dev-utils/-/heisenberg-dev-utils-0.0.7.tgz#643eac289704d146ee103b4e772f9b474dce7aa3"
 
 heisenberg-scripts@0.3.10:
   version "0.3.10"
