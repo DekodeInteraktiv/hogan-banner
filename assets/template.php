@@ -10,7 +10,7 @@
  * $this->heading         (string|null) Module heading.
  * $this->image           (array|null)  Image.
  * $this->tagline         (string|null) Tagline.
- * $this->dim_image       (boolean)     Should the image be dimmed
+ * $this->dim_image       (boolean)     Should the image be dimmed.
  *
  * @package Hogan
  */
