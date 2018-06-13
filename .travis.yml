@@ -20,7 +20,7 @@ matrix:
       env: WP_TRAVISCI=phpcs
 
     - language: node_js
-      node_js: node
+      node_js: 9
       env: WP_TRAVISCI=node
 
 before_script:
