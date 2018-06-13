@@ -56,6 +56,16 @@
 		object-fit: cover;
 	}
 
+	.hogan-banner-dim-image::after {
+		background-color: rgba(#000, 0.2);
+		bottom: 0;
+		content: "";
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
 	/**
 	 * Content and text align
 	 */
