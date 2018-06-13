@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0] - 2018-06-13
+* Added filter to turn off background option on full layout [#20](https://github.com/DekodeInteraktiv/hogan-banner/pull/20)
+
+### Style changes
+* Dimmed background image when full layout [#23](https://github.com/DekodeInteraktiv/hogan-banner/pull/23)
+* Added text shadow when full layout and transparent background [#23](https://github.com/DekodeInteraktiv/hogan-banner/pull/23)
+
 ## [2.1.3] - 2018-04-19
 * Fix invalid `color` value in inline css. Use `inherit` as default color.
 
