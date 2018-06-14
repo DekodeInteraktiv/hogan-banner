@@ -13,9 +13,10 @@ $large   = '';
 
 foreach ( $this->themes as $theme => $colors ) {
 	$defaults = [
-		'backgroundColor' => 'transparent',
-		'color'           => 'inherit',
-		'textShadow'      => '1px 1px 2px rgba(0, 0, 0, 0.5)',
+		'backgroundColor'  => 'transparent',
+		'color'            => 'inherit',
+		'colorTransparent' => '#fff',
+		'textShadow'       => '1px 1px 2px rgba(0, 0, 0, 0.5)',
 	];
 
 	$colors = wp_parse_args( $colors, $defaults );
@@ -32,6 +33,7 @@ foreach ( $this->themes as $theme => $colors ) {
 	$large .= "
 		.hogan-banner-theme-{$theme}-transparent.hogan-banner-layout-full .hogan-banner-content-inner {
 			background-color: transparent;
+			color: {$colors['colorTransparent']};
 			text-shadow: {$colors['textShadow']};
 		}
 	";
