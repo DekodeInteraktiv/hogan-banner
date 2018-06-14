@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.3.0] - 2018-06-14
+* Added option to choose color on transparent theme. Default color is now `#fff` [#24](https://github.com/DekodeInteraktiv/hogan-banner/pull/24)
+
 ## [2.2.0] - 2018-06-13
 * Added filter to turn off background option on full layout [#20](https://github.com/DekodeInteraktiv/hogan-banner/pull/20)
 
