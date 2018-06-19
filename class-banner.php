@@ -558,7 +558,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			// Main Image.
 			if ( ! empty( $raw_content['main_image_id'] ) ) {
 				$main_image = wp_parse_args(
-					apply_filters( 'hogan/module/banner/main_image/args', [] ), [
+					apply_filters( 'hogan/module/banner/main_image/args', [], $this ), [
 						'size' => 'full',
 						'icon' => false,
 						'attr' => [],
@@ -572,7 +572,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 			// Image.
 			if ( ! empty( $raw_content['image_id'] ) ) {
 				$image = wp_parse_args(
-					apply_filters( 'hogan/module/banner/image/args', [] ), [
+					apply_filters( 'hogan/module/banner/image/args', [], $this ), [
 						'size' => 'thumbnail',
 						'icon' => false,
 						'attr' => [],
