@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.3.1] - 2018-06-19
+* Added `$this` to image args filter [#26](https://github.com/DekodeInteraktiv/hogan-banner/pull/26)
+* Make sure dim option is false if layout isn’t full [#25](https://github.com/DekodeInteraktiv/hogan-banner/pull/25)
+
 ## [2.3.0] - 2018-06-14
 * Added option to choose color on transparent theme. Default color is now `#fff` [#24](https://github.com/DekodeInteraktiv/hogan-banner/pull/24)
 
