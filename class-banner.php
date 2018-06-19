@@ -592,6 +592,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 				 * @param boolean $enable_dim Enable or disable dimmed image.
 				 */
 				$this->dim_image = apply_filters( 'hogan/module/banner/image/dim', true );
+			} else {
+				$this->dim_image = false;
 			}
 
 			// Tagline.
