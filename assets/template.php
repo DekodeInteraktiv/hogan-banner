@@ -28,7 +28,12 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 	<div class="<?php echo esc_attr( hogan_classnames( 'hogan-banner-column hogan-banner-image', [ 'hogan-banner-dim-image' => $this->dim_image ] ) ); ?>">
 		<?php
 		if ( ! empty( $this->main_image ) ) {
-			echo wp_get_attachment_image( $this->main_image['id'], $this->main_image['size'], $this->main_image['icon'], $this->main_image['attr'] );
+			echo wp_get_attachment_image(
+				$this->main_image['id'],
+				$this->main_image['size'],
+				$this->main_image['icon'],
+				$this->main_image['attr']
+			);
 		}
 		?>
 	</div>
@@ -37,11 +42,21 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 			<div class="hogan-banner-content-inner">
 				<?php
 				if ( ! empty( $this->image ) ) {
-					echo wp_get_attachment_image( $this->image['id'], $this->image['size'], $this->image['icon'], $this->image['attr'] );
+					echo wp_get_attachment_image(
+						$this->image['id'],
+						$this->image['size'],
+						$this->image['icon'],
+						$this->image['attr']
+					);
 				}
 
 				if ( ! empty( $this->tagline ) ) {
-					printf( '<div class="hogan-tagline">%s</div>', esc_html( $this->tagline ) );
+					printf(
+						'<div class="hogan-tagline">%s</div>',
+						esc_html(
+							$this->tagline
+						)
+					);
 				}
 
 				if ( ! empty( $this->heading ) ) {
