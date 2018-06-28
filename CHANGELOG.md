@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.3.2] - 2018-06-28
+* Fix so that content div is not rendered if no content is inserted [#28](https://github.com/DekodeInteraktiv/hogan-banner/pull/28)
+
 ## [2.3.1] - 2018-06-19
 * Added `$this` to image args filter [#26](https://github.com/DekodeInteraktiv/hogan-banner/pull/26)
 * Make sure dim option is false if layout isn’t full [#25](https://github.com/DekodeInteraktiv/hogan-banner/pull/25)
