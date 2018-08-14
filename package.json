@@ -8,7 +8,8 @@
   },
   "entry": {
     "hogan-banner": [
-      "./src/style.scss"
+      "./src/banner.js",
+      "./src/banner.scss"
     ]
   },
   "heisenberg": {

@@ -171,8 +171,12 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Banner' ) && class_exists( '\\Dekode\\Hog
 		 */
 		public function enqueue_assets() {
 			$_version = defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ? time() : HOGAN_BANNER_VERSION;
+
 			wp_enqueue_style( 'hogan-banner', plugins_url( '/assets/css/hogan-banner.css', __FILE__ ), [], $_version );
 			wp_add_inline_style( 'hogan-banner', $this->include_file( 'assets/inline-css.php', true ) );
+
+			wp_register_script( 'object-fit-images', plugins_url( '/assets/vendor/object-fit-images.js', __FILE__ ), [], '3.2.3', true );
+			wp_enqueue_script( 'hogan-banner', plugins_url( '/assets/js/hogan-banner.js', __FILE__ ), [ 'object-fit-images' ], $_version, true );
 		}
 
 		/**
