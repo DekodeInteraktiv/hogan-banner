@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.4.0] - 2018-08-14
+* Added object-fit polyfill [#29](https://github.com/DekodeInteraktiv/hogan-banner/pull/29).
+
 ## [2.3.2] - 2018-06-28
 * Fix so that content div is not rendered if no content is inserted [#28](https://github.com/DekodeInteraktiv/hogan-banner/pull/28)
 
