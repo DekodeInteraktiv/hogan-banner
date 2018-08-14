@@ -53,6 +53,8 @@
 	}
 
 	.hogan-banner-image img {
+		// stylelint-disable-next-line
+		font-family: "object-fit: cover;";
 		object-fit: cover;
 	}
 
