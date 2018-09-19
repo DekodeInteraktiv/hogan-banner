@@ -30,7 +30,7 @@
   ],
   "devDependencies": {
     "heisenberg-dev-utils": "0.0.7",
-    "heisenberg-scripts": "0.3.10"
+    "heisenberg-scripts": "0.3.11"
   },
   "dependencies": {}
 }
