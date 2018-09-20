@@ -3530,9 +3530,9 @@ heisenberg-dev-utils@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/heisenberg-dev-utils/-/heisenberg-dev-utils-0.0.7.tgz#643eac289704d146ee103b4e772f9b474dce7aa3"
 
-heisenberg-scripts@0.3.10:
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/heisenberg-scripts/-/heisenberg-scripts-0.3.10.tgz#64d102ad8ae180fa66022806c9867961c9bc91e1"
+heisenberg-scripts@0.3.12:
+  version "0.3.12"
+  resolved "https://registry.yarnpkg.com/heisenberg-scripts/-/heisenberg-scripts-0.3.12.tgz#6a0272ac59add7c8566b2b67d33b6386f4c9b118"
   dependencies:
     "@babel/core" "7.0.0-beta.49"
     "@babel/plugin-proposal-object-rest-spread" "7.0.0-beta.49"
@@ -3576,6 +3576,7 @@ heisenberg-scripts@0.3.10:
     stylelint-webpack-plugin "0.10.5"
     svgo "1.0.5"
     uglifyjs-webpack-plugin "1.2.5"
+    unminified-webpack-plugin "1.4.2"
     validator "10.3.0"
     webpack "3.12.0"
     webpack-dev-server "2.11.2"
@@ -7652,6 +7653,10 @@ unist-util-visit@^1.1.0:
 universalify@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.1.tgz#fa71badd4437af4c148841e3b3b165f9e9e590b7"
+
+unminified-webpack-plugin@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/unminified-webpack-plugin/-/unminified-webpack-plugin-1.4.2.tgz#2cf5294abe7827bb874354e30ee3e0c5ae0e8743"
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
