@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.4.1] - 2019-01-08
+* Added fix for object-fit polyfill
+* Updated object-fit polyfill file to v3.2.4 
+
 ## [2.4.0] - 2018-08-14
 * Added object-fit polyfill [#29](https://github.com/DekodeInteraktiv/hogan-banner/pull/29).
 
