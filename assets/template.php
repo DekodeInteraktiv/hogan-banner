@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 	return; // Exit if accessed directly.
 }
 
+<?php do_action( 'hogan/module/banner/open_wrapper', $this ); ?>
 ?>
 <div class="hogan-banner">
 	<div class="<?php echo esc_attr( hogan_classnames( 'hogan-banner-column hogan-banner-image', [ 'hogan-banner-dim-image' => $this->dim_image ] ) ); ?>">
@@ -90,3 +91,4 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Banner ) ) {
 		</div>
 	<?php endif; ?>
 </div>
+<?php do_action( 'hogan/module/banner/close_wrapper', $this ); ?>
